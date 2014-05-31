@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
     <title><?php echo htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8'); ?></title>
-    <link rel="Shortcut Icon" type="image/ico" href="imgs/favicon.ico">
-    <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon57x57.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/img/ios/icon114x114.png">
+    <link rel="Shortcut Icon" type="image/ico" href="imgs/ios/icon157x157.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon157x157.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon157x157.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/ios/icon157x157.png">
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/styles.css?dadsfsfadsf" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
