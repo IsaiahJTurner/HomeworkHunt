@@ -1,0 +1,19 @@
+html {
+	width:670px;
+	max-width:100%;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+header {
+	background-color:#F8F8F8;
+	height:40px;
+	left:0;
+	position:fixed;
+	width:100%;
+	top:0;
+	display:inline-block;
+	text-align:center;
+	box-shadow:0 1px 1px #d9d9d9;
+}
