@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" style="width:670px;max-width:100%;display: block;margin-left: auto;margin-right: auto;">
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="the hw hack, hw hack, answers, homework, essays, papers, projects, hw">
@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
 
-    <title>Share  |  The HW Hack</title>
+    <title>The HW Hack</title>
 
     <link rel="Shortcut Icon" type="image/ico" href="imgs/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon57x57.png" />
@@ -22,7 +22,7 @@
     <script src="/js/bootstrap.js"></script>
 </head>
 <body>
-    <header>
+    <header style="background-color: #F8F8F8;height: 40px;left:0;position: fixed;width:100%;top:0;display: inline-block;text-align:center;box-shadow: 0px 1px 1px #d9d9d9;">
     <div class="dropdown">
 		<a data-toggle="dropdown" href="#" style="text-decoration:none;color: #0099FF;font-size: 28px;"><span class="glyphicon glyphicon-search" style="font-size: 28px;"></span> Search</a>
 		<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="max-width:100%;">
