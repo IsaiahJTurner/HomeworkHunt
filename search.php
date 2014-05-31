@@ -19,11 +19,7 @@
 </head>
 
 <body>
-<header>
-        <div class="header">
-            <a href="/"><img src="img/logo.png"></a>
-        </div>
-    </header>
+<?php include("includes/header.php"); ?>
     <div class="container">
     <div class="status">Search results for: <?php echo htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8'); ?></div>
         <table id="results">
@@ -41,10 +37,6 @@
             </tbody>
         </table>
     </div>
-    <footer>
-        <hr>
-
-        <p>Made with ♥ by <a href="http://isaiahjturner.com">Isaiah Turner</a> & <a href="http://lukejarboe.com/">Luke Jarboe</a> in Maryland.</p>
-    </footer>
+    <?php include("includes/footer.php"); ?>
 </body>
 </html>

@@ -24,25 +24,42 @@
 </head>
 
 <body>
+<?php include("includes/header.php"); ?>
     <div class="container">
-    <form method="get" action="search.php">
+    <form method="post" action="submit.php">
         <div class="row">
             <div class="col-md-6 col-md-push-3 col-sm-8 col-sm-push-2">
                 <img src="img/logo.png" width="80%" style="margin-left:10%; margin-bottom:15px;" class="img-responsive">
-                <input type="text" class="form-control" name="q" placeholder="Search worksheets, books, and more!">
+                <div class="form-group">
+    <label for="exampleInputEmail1">Desired Username</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Repeat Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> By checking this box, you accept to our <a href="terms.php">Terms & Conditions</a>.
+    </label>
+  </div>
             </div>
         </div>
 
         <div class="row text-center">
-            <button type="submit" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;">Search</button> <button type="button" class="btn btn-success text-center" style="width:160px; margin-bottom: 10px;">Share My Homework</button>
+            <button type="submit" class="btn btn-success text-center" style="width:160px; margin-bottom: 10px;">Register</button>
         </div>
     </form>
     </div>
 
-    <footer>
-        <hr>
-
-        <p>Made with ♥ by <a href="http://isaiahjturner.com">Isaiah Turner</a> & <a href="http://lukejarboe.com/">Luke Jarboe</a> in Maryland.</p>
-    </footer>
+    <?php include("includes/footer.php"); ?>
 </body>
 </html>

@@ -24,6 +24,7 @@
 </head>
 
 <body>
+<?php include("includes/header.php"); ?>
     <div class="container">
     <form method="get" action="search.php">
         <div class="row">
@@ -34,15 +35,11 @@
         </div>
 
         <div class="row text-center">
-            <button type="submit" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;">Search</button> <button type="button" class="btn btn-success text-center" style="width:160px; margin-bottom: 10px;">Share My Homework</button>
+            <button type="submit" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;">Search</button> <a href="share.php" class="btn btn-success text-center" style="width:160px; margin-bottom: 10px;">Share My Homework</a>
         </div>
     </form>
     </div>
 
-    <footer>
-        <hr>
-
-        <p>Made with ♥ by <a href="http://isaiahjturner.com">Isaiah Turner</a> & <a href="http://lukejarboe.com/">Luke Jarboe</a> in Maryland.</p>
-    </footer>
+    <?php include("includes/footer.php"); ?>
 </body>
 </html>
