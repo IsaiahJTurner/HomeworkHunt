@@ -1,0 +1,4 @@
+<?php
+die ("README via GitHub only.");
+?>
+To update the server, hit http://thehwhack.com/update.php. If this file can be found on the server, it's working.
