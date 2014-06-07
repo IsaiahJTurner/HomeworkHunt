@@ -10,11 +10,7 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <title>The HW Hack</title>
-    <link rel="Shortcut Icon" type="image/ico" href="imgs/favicon.ico">
-    <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon57x57.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon72x72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/ios/icon114x114.png">
-    <link rel="apple-touch-startup-image" href="/img/ios/splash.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/ios/icon157x157.png">
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/styles.css?dsfadsf" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
@@ -24,9 +20,8 @@
 </head>
 
 <body>
-<?php include("includes/header.php"); ?>
     <div class="container">
-    <form method="get" action="search.php">
+    <form method="get" action="/search">
         <div class="row">
             <div class="col-md-6 col-md-push-3 col-sm-8 col-sm-push-2">
                 <img src="img/logo.png" width="80%" style="margin-left:10%; margin-bottom:15px;" class="img-responsive">
@@ -35,7 +30,7 @@
         </div>
 
         <div class="row text-center">
-            <button type="submit" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;">Search</button> <a href="share.php" class="btn btn-success text-center" style="width:160px; margin-bottom: 10px;">Share My Homework</a>
+            <button type="submit" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;">Search</button> <a href="/share" class="btn btn-success text-center" style="width:160px; margin-bottom: 10px;">Share Answers</a>
         </div>
     </form>
     </div>

@@ -8,12 +8,12 @@ footer {
 header {
 	position: fixed;
 	background-color:#F8F8F8;
-	height:40px;
+	height:54px;
 	left:0;
 	width:100%;
 	top:0;
 	display:inline-block;
-	text-align:center;
+	text-align:left;
 	box-shadow:0 1px 1px #d9d9d9;
 	z-index: 9999;
 }
@@ -34,7 +34,7 @@ table {
 
 .status {
 	position:absolute;
-	top:50px;
+	top:70px;
 }
 
 .header img {
@@ -59,9 +59,12 @@ table {
 }
 
 .container {
-	margin-top:75px;
+	margin-top:100px;
 }
 
+.donate {
+	top: 40px;
+}
 .row {
 	margin-bottom:15px;
 }

@@ -16,7 +16,7 @@ if ($whack->getProfileID()) {
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
 
-    <title>Sign Up for The HW Hack</title>
+    <title>Sign in to The HW Hack</title>
     <link rel="Shortcut Icon" type="image/ico" href="imgs/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon57x57.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon72x72.png">
@@ -33,33 +33,23 @@ if ($whack->getProfileID()) {
 <body>
 <?php include("includes/header.php"); ?>
     <div class="container">
-    <form method="post" action="/api/register">
-        <div class="row">
-            <div class="col-md-6 col-md-push-3 col-sm-8 col-sm-push-2">
-                <div class="form-group">
-    <label for="username">Desired Username <a href="/login">Already have an account?</a></label>
-    <input type="text" class="form-control" id="username" name="username" placeholder="JohnDoe">
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="john.doe@example.com">
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="********">
-  </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" name="terms"> By checking this box, you accept to our <a href="/terms">Terms & Conditions</a>.
-    </label>
-  </div>
-            </div>
-        </div>
+        <form method="post" action="/api/login">
+            <div class="row">
+                <div class="col-md-6 col-md-push-3 col-sm-8 col-sm-push-2">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Login <a href="/register">Need an account?</a></label> <input type="text" class="form-control" name="login" id="exampleInputEmail1" placeholder="Enter email">
+                    </div>
 
-        <div class="row text-center">
-            <input type="submit" value="Create an Account" class="btn btn-success text-center" style="width:160px; margin-bottom: 10px;" id="submit">
-        </div>
-    </form>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label> <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="text-center">
+					<input type="submit" value="Log in" class="btn btn-success text-center" style="width:160px; margin-bottom: 10px;">
+                    </div>
+                </div>
+            </div>
+
+        </form>
     </div>
 
     <?php include("includes/footer.php"); ?>

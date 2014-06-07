@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+$searchPage = true;
+?><!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -29,7 +31,7 @@
               $mysql_con = mysqli_connect('localhost','whack','lbruxfrdseae','homework_db');
               $query = mysqli_query($mysql_con,"SELECT * FROM testable WHERE filename LIKE '%$q%' OR description LIKE '%$q%';");
               while($row = mysqli_fetch_array($query)) {
-                echo "<tr><td><a href='/files/".$row['filename']."'>".$row['filename']."</a>";
+                echo "<tr><td><a href='/hw/".$row['filename']."'>".$row['filename']."</a>";
                 echo "<p>".$row['description']."</p></td></tr>";
               }
               mysqli_close($mysql_con);
