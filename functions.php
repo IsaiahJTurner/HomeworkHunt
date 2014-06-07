@@ -41,17 +41,28 @@ class Whack {
 	}
 
 	function share($user_id, $title, $description, $file) {
-		
+
 	}
-	
+
 	function vote($isUpvote = 0) {
-		
+
 	}
-	
+
 	function download() {
-		
+
 	}
-	
+
+	function search($q) {
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
+		$q_safe = mysqli_real_escape_string($mysqli,$q);
+		$query = "SELECT `id`,`title`,`description` FROM `submissions` WHERE `title` LIKE '%$q_safe%' OR `description` LIKE '%$q_safe%';";
+		$result = mysqli_query($mysqli, $query);
+		while ($row = mysqli_fetch_assoc($result)) {
+			$results[] = $row;
+		}
+		return $results;
+	}
+
 	function getProfileID() {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		if(!isset($_COOKIE['sid'])){
@@ -63,7 +74,7 @@ class Whack {
 		$row = mysqli_fetch_array($result);
 		return $row[0]["sid"];
 	}
-	
+
 	function availableCreditsCount() {
 		return 0;
 	}

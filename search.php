@@ -1,4 +1,6 @@
 <?php
+require_once("functions.php");
+$whack = new Whack();
 $searchPage = true;
 ?><!DOCTYPE html>
 
@@ -27,14 +29,10 @@ $searchPage = true;
         <table id="results">
         <tbody>
             <?php
-              $q = $_GET['q'];
-              $mysql_con = mysqli_connect('localhost','whack','lbruxfrdseae','homework_db');
-              $query = mysqli_query($mysql_con,"SELECT * FROM testable WHERE filename LIKE '%$q%' OR description LIKE '%$q%';");
-              while($row = mysqli_fetch_array($query)) {
-                echo "<tr><td><a href='/hw/".$row['filename']."'>".$row['filename']."</a>";
-                echo "<p>".$row['description']."</p></td></tr>";
-              }
-              mysqli_close($mysql_con);
+            	foreach ($whack->search($_GET['q']) as $result) {
+	            	echo "<tr><td><a href='/hw/".$result['id']."'>".htmlspecialchars($result['title'])."</a>";
+					echo "<p>".htmlspecialchars($result['description'])."</p></td></tr>";
+            	}
             ?>
             </tbody>
         </table>
