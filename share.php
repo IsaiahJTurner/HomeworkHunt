@@ -18,10 +18,10 @@ if (!$whack->getProfileID()) {
     <meta name="mobile-web-app-capable" content="yes">
 
     <title>The HW Hack</title>
-    <link rel="Shortcut Icon" type="image/ico" href="imgs/favicon.ico">
-    <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon57x57.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon72x72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/ios/icon114x114.png">
+    <link rel="Shortcut Icon" type="image/ico" href="imgs/ios/icon157x157.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon157x157.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon157x157.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/ios/icon157x157.png">
     <link rel="apple-touch-startup-image" href="/img/ios/splash.png">
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/styles.css?dsfadsf" rel="stylesheet" type="text/css">

@@ -10,7 +10,15 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <title>The HW Hack</title>
+<<<<<<< HEAD
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/ios/icon157x157.png">
+=======
+    <link rel="Shortcut Icon" type="image/ico" href="imgs/ios/icon157x157.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon157x157.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon157x157.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/ios/icon157x157.png">
+    <link rel="apple-touch-startup-image" href="/img/ios/splash.png">
+>>>>>>> 01da3fec4d2c52749e4ebc131125d6c737c22b57
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/styles.css?dsfadsf" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
