@@ -1,10 +1,24 @@
-1<?php
+<?php
 if (substr_count($_SERVER['REQUEST_URI'], "/") != 2) die("Homework not found");
 $hwID = end(explode('/', $_SERVER['REQUEST_URI']));
 require_once("../functions.php");
 $whack = new Whack();
 $hw = $whack->homework($hwID);
 if (!$hw) die("Homework not found");
+
+function formatBytes($bytes, $precision = 2) { 
+    $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
+
+    $bytes = max($bytes, 0); 
+    $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
+    $pow = min($pow, count($units) - 1); 
+
+    // Uncomment one of the following alternatives
+    // $bytes /= pow(1024, $pow);
+    // $bytes /= (1 << (10 * $pow)); 
+
+    return round($bytes, $precision) . ' ' . $units[$pow]; 
+} 
 ?><!DOCTYPE html>
 
 <html lang="en">
@@ -38,7 +52,7 @@ if (!$hw) die("Homework not found");
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-push-1 col-sm-3">
+            <div class="col-lg-4 col-sm-3">
                 <h4 class="text-center">Homework Quality</h4>
 
                 <div class="row text-center">
@@ -66,7 +80,7 @@ if (!$hw) die("Homework not found");
                 </div>
             </div>
 
-            <div class="col-lg-7 col-lg-push-1 col-sm-9">
+            <div class="col-lg-8 col-sm-9">
                 <div class="panel-group" id="accordion">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -79,10 +93,12 @@ if (!$hw) die("Homework not found");
                                 <hr>
                                 <div class="row">
                                 	<div class="col-xs-4">
-                                	File Extension: DOC
+                                	File Extension: <?php echo(pathinfo($hw['file'], PATHINFO_EXTENSION)); ?>
                                 	</div>
                                 	<div class="col-xs-4">
-                                	File Size: 54MB
+                                	File Size: <?php
+                                	echo(formatBytes($hw['size'], 2));
+                                	?>
                                 	</div>
                                 	<div class="col-xs-4">
                                 	Cost: 1 Credit

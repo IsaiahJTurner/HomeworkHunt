@@ -22,7 +22,7 @@ if(isset($searchPage) && $searchPage = true) { ?>
 							<li class="divider"></li>
 
                             <li><a tabindex="-1" href="/share">Share & Earn</a></li>
-                            <li><a tabindex="-1" href="/logout">Logout</a></li>
+                            <li><a tabindex="-1" href="/api/logout">Logout</a></li>
                         </ul>
                     </div><?php } ?>
                 </div>
@@ -47,7 +47,7 @@ if(isset($searchPage) && $searchPage = true) { ?>
 							<li class="divider"></li>
 
                             <li><a tabindex="-1" href="/share">Share & Earn</a></li>
-                            <li><a tabindex="-1" href="/logout">Logout</a></li>
+                            <li><a tabindex="-1" href="/api/logout">Logout</a></li>
                         </ul>
                     </div><?php } ?>
                 </div>

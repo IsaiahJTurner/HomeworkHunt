@@ -68,15 +68,15 @@ if (!$whack->getProfileID()) {
                         </div>
 
                         <div id="form" class="panel-collapse collapse in">
-                            <form method="post" action="/api/share">
+                            <form method="post" action="/api/share" enctype="multipart/form-data">
                                 <div class="panel-body">
                                     <div class="form-group">
-                                        <label for="title">Assignment Title</label> <input type="text" class="form-control" id="title" placeholder="Vocabulary Workshop Answer Key All Units: Level D">
+                                        <label for="title">Assignment Title</label> <input type="text" class="form-control" id="title" placeholder="Vocabulary Workshop Answer Key All Units: Level D" name="title">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="description">Description</label> 
-                                        <textarea type="text" class="form-control" id="description" placeholder="Most of these answers should be rite but I recommend checking them.">
+                                        <textarea type="text" class="form-control" id="description" placeholder="Most of these answers should be rite but I recommend checking them." name="description">
 </textarea>
                                     </div>
 
@@ -84,12 +84,14 @@ if (!$whack->getProfileID()) {
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <div style="position:relative;">
-                                                    <a class='btn btn-default' href='javascript:;'>Select File... <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'></a> &nbsp; <span class='label label-info' id="upload-file-info"></span>
+                                                    <a class='btn btn-default' href='javascript:;'>Select File... <input type="file" name="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
+	                                                    
+                                                    </a> &nbsp; <span class='label label-info' id="upload-file-info"></span>
                                                 </div>
                                             </div>
 
                                             <div class="col-xs-6 text-right">
-                                                <button type="submit" class="btn btn-success" style="width:160px; margin-bottom: 10px;">Share Answers</button>
+                                                <input type="submit" class="btn btn-success" style="width:160px; margin-bottom: 10px;" value="Share Answers">
                                             </div>
                                         </div>
                                     </div>

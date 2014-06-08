@@ -47,14 +47,22 @@ class Whack {
 		return true;
 	}
 
-	function share($title, $description, $file) {
+	function share($user, $title, $description, $file) {
+		$fileHash = sha1_file($file['tmp_name']);
+		$fileName = $file['name'];
+		$fileSize = $file['size'];
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
-		$title_safe = mysqli_escape_string($mysqli,$title);
-		$description_safe = mysqli_escape_string($mysqli,$description);
-
-		$query = "INSERT INTO `submissions` (`username`, `email`, `password`) VALUES ('$username', '$email', '$password_hashed')";
+		$title_safe = mysqli_real_escape_string($mysqli,$title);
+		$description_safe = mysqli_real_escape_string($mysqli,$description);
+		$query = "INSERT INTO `submissions` (`user`, `title`, `description`,`hash`, `file`, `size`) VALUES ('$user', '$title_safe', '$description_safe', '$fileHash', '$fileName', '$fileSize')";
 		$result = mysqli_query($mysqli, $query);
-		if (!$result) return false;
+
+		$s3 = S3Client::factory();
+		$s3->putObject(array(
+				'Bucket' => "TheHWHack",
+				'Key'    => $fileHash.".".pathinfo($file['name'], PATHINFO_EXTENSION),
+				'Body'   => fopen($file['tmp_name'], 'r+')
+			));
 		return true;
 	}
 
@@ -65,11 +73,18 @@ class Whack {
 	function download($item) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$item_safe = mysqli_real_escape_string($mysqli,$item);
-		$query = "SELECT `hash`,`extension` FROM `submissions` WHERE `id` = '$item_safe'";
+		$query = "SELECT `hash`,`file` FROM `submissions` WHERE `id` = '$item_safe'";
 		$result = mysqli_query($mysqli, $query);
 		$row = mysqli_fetch_assoc($result);
 		$s3 = S3Client::factory();
-		return $s3->getObjectUrl("TheHWHack", $row['hash'].".".$row['extension'], '5 minutes') . PHP_EOL . PHP_EOL;
+		return $s3->getObjectUrl(
+			"TheHWHack",
+			$row['hash'].".".pathinfo($row['file'], PATHINFO_EXTENSION),
+			'5 minutes',
+			array(
+					'ResponseContentDisposition' => 'attachment; filename="'.$row['file'].'"'
+			)
+		);
 	}
 
 	// Returns an array of information pertaining to a homework assignment
