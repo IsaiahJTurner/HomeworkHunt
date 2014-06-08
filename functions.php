@@ -65,6 +65,7 @@ class Whack {
 		$id_safe = mysqli_real_escape_string($mysqli,$id);
 		$query = "SELECT * FROM `submissions` WHERE `id` = '$id_safe'";
 		$result = mysqli_query($mysqli, $query);
+		if (!$result) return false;
 		$row = mysqli_fetch_assoc($result);
 		return $row;
 	}

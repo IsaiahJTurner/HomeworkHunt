@@ -4,6 +4,7 @@ $hwID = end(explode('/', $_SERVER['REQUEST_URI']));
 require_once("../functions.php");
 $whack = new Whack();
 $hw = $whack->homework($hwID);
+if (!$hw) die("Homework not found");
 ?><!DOCTYPE html>
 
 <html lang="en">
