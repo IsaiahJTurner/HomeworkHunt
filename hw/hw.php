@@ -1,4 +1,4 @@
-<?php
+1<?php
 if (substr_count($_SERVER['REQUEST_URI'], "/") != 2) die("Homework not found");
 $hwID = end(explode('/', $_SERVER['REQUEST_URI']));
 require_once("../functions.php");
@@ -95,7 +95,7 @@ if (!$hw) die("Homework not found");
                                 </div>
 
                                 <div class="row col-lg-12 text-right">
-                                <form method="post" action="/api/download">
+                                <form method="post" action="/api/download" target="_blank">
                                 <input type="hidden" name="id" value="<?php echo($hw['id']); ?>">
                                     <input type="submit" class="btn btn-success" style="width:140px; margin-bottom: 10px;" value="Download">
 									</form>

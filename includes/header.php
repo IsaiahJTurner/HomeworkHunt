@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__."/../functions.php");
 $whack = new Whack();
-if($searchPage) { ?>
+if(isset($searchPage) && $searchPage = true) { ?>
     <header>
         <div class="container" style="margin-top:0px;">
             <div class="row" style="width:100%;">

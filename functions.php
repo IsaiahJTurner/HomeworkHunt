@@ -1,7 +1,14 @@
 <?php
-define("S3_USERNAME", "TheHWHack");
-define("S3_ACCESS_KEY_ID", "AKIAJNBICZKD35BRHN5A");
-define("S3_SECRET_ACCESS_KEY", "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");
+ini_set('display_errors', 'On');
+
+
+require 'vendor/autoload.php';
+
+use Aws\S3\S3Client;
+
+
+$_SERVER['AWS_ACCESS_KEY_ID'] = "AKIAJNBICZKD35BRHN5A";
+$_SERVER['AWS_SECRET_KEY'] = "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";
 
 define("DB_USERNAME", "root");
 define("DB_PASSWORD", "F>L2}M9*8%7]B6F");
@@ -52,14 +59,20 @@ class Whack {
 	}
 
 	function vote($isUpvote = 0) {
-
+		return true;
 	}
 
 	function download($item) {
-
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
+		$item_safe = mysqli_real_escape_string($mysqli,$item);
+		$query = "SELECT `hash`,`extension` FROM `submissions` WHERE `id` = '$item_safe'";
+		$result = mysqli_query($mysqli, $query);
+		$row = mysqli_fetch_assoc($result);
+		$s3 = S3Client::factory();
+		return $s3->getObjectUrl("TheHWHack", $row['hash'].".".$row['extension'], '5 minutes') . PHP_EOL . PHP_EOL;
 	}
-	
-	// Returns an array of information pertaining to a homework assignment 
+
+	// Returns an array of information pertaining to a homework assignment
 	function homework($id) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$id_safe = mysqli_real_escape_string($mysqli,$id);
@@ -88,8 +101,9 @@ class Whack {
 		$sid = mysqli_real_escape_string($mysqli,$_COOKIE['sid']);
 		$query = "SELECT `id` FROM `sessions` WHERE `sid` = '$sid'";
 		$result = mysqli_query($mysqli, $query);
-		$row = mysqli_fetch_array($result);
-		return $row[0]["sid"];
+		if (!$result) return false;
+		$row = mysqli_fetch_assoc($result);
+		return $row['id'];
 	}
 
 	function availableCreditsCount() {
