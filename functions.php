@@ -40,22 +40,38 @@ class Whack {
 		return true;
 	}
 
-	function share($user_id, $title, $description, $file) {
+	function share($title, $description, $file) {
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
+		$title_safe = mysqli_escape_string($mysqli,$title);
+		$description_safe = mysqli_escape_string($mysqli,$description);
 
+		$query = "INSERT INTO `submissions` (`username`, `email`, `password`) VALUES ('$username', '$email', '$password_hashed')";
+		$result = mysqli_query($mysqli, $query);
+		if (!$result) return false;
+		return true;
 	}
 
 	function vote($isUpvote = 0) {
 
 	}
 
-	function download() {
+	function download($item) {
 
 	}
-
+	
+	// Returns an array of information pertaining to a homework assignment 
+	function homework($id) {
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
+		$id_safe = mysqli_real_escape_string($mysqli,$id);
+		$query = "SELECT * FROM `submissions` WHERE `id` = '$id_safe'";
+		$result = mysqli_query($mysqli, $query);
+		$row = mysqli_fetch_assoc($result);
+		return $row;
+	}
 	function search($q) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$q_safe = mysqli_real_escape_string($mysqli,$q);
-		$query = "SELECT `id`,`title`,`description` FROM `submissions` WHERE `title` LIKE '%$q_safe%' OR `description` LIKE '%$q_safe%';";
+		$query = "SELECT `id`,`title`,`description` FROM `submissions` WHERE `title` LIKE '%$q_safe%' OR `description` LIKE '%$q_safe%'";
 		$result = mysqli_query($mysqli, $query);
 		while ($row = mysqli_fetch_assoc($result)) {
 			$results[] = $row;

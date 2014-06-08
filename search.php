@@ -31,7 +31,9 @@ $searchPage = true;
             <?php
             	foreach ($whack->search($_GET['q']) as $result) {
 	            	echo "<tr><td><a href='/hw/".$result['id']."'>".htmlspecialchars($result['title'])."</a>";
-					echo "<p>".htmlspecialchars($result['description'])."</p></td></tr>";
+	            	$maxDescriptionLength = 300;
+	            	if (strlen($result['description']) > $maxDescriptionLength) $truncation = "..."; else $truncation = ""; 
+					echo "<p>".htmlspecialchars(substr($result['description'],0,$maxDescriptionLength).$truncation)."</p></td></tr>";
             	}
             ?>
             </tbody>

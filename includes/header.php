@@ -6,7 +6,7 @@ if($searchPage) { ?>
         <div class="container" style="margin-top:0px;">
             <div class="row" style="width:100%;">
                 <div class="col-sm-10">
-                            <a href="/"><img height="22px" src="img/logo.png"></a>
+                            <a href="/"><img height="22px" src="/img/logo.png"></a>
                             <form action="/search" method="get" style="display: inline;">
                             <input type="text" name="q" value="<?php echo htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8'); ?>" class="form-control" style="margin-top: 10px;max-width:350px;width:100%;display:inline; margin-left:15px;" placeholder="Search"><input type="submit" value="Search" class="btn btn-success" style="margin-left: 6px;margin-top: -2px;"></form>
                 </div>
@@ -34,7 +34,7 @@ if($searchPage) { ?>
         <div class="container" style="margin-top:0px;">
             <div class="row" style="width:100%;">
                 <div class="col-sm-10">
-                            <a href="/"><img style="margin-top: 15px;" height="22px" src="img/logo.png"></a>                </div>
+                            <a href="/"><img style="margin-top: 15px;" height="22px" src="/img/logo.png"></a>                </div>
 
                 <div class="col-sm-2 text-center">
                     <?php if ($whack->getProfileID()) { ?>
