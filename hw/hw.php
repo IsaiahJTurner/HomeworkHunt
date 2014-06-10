@@ -42,8 +42,23 @@ function formatBytes($bytes, $precision = 2) {
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
-
+	<script type="text/javascript" src="/js/script.js"></script>
     <script src="/js/bootstrap.js" type="text/javascript">
+    <!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://localhost/analytics/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
 </script>
 </head>
 
@@ -59,8 +74,8 @@ function formatBytes($bytes, $precision = 2) {
                     Using our advanced algorithm, we have determined this homework to be of <strong>Good</strong> quality. We recommend you please take caution and verify answers whenever possible even for high quality homework.
                 </div>
                 <div class="row text-center" style="font-size:20px">
-                    <a href="#up" class="btn btn-success"><i class="fa fa-thumbs-up"></i></a> 23  |  21
-					<a href="#down" class="btn btn-danger"><i class="fa fa-thumbs-down"></i></a>
+                    <a id="upvote" class="btn btn-success"><i class="fa fa-thumbs-up"></i></a> 23  |  21
+					<a id="downvote" class="btn btn-danger"><i class="fa fa-thumbs-down"></i></a>
                 </div>
             </div>
 
