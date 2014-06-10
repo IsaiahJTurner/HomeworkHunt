@@ -17,29 +17,45 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/ios/icon157x157.png">
     <link rel="apple-touch-startup-image" href="/img/ios/splash.png">
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/styles.css?dsfadsf" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
     <script src="/js/bootstrap.js" type="text/javascript">
 </script>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://localhost/analytics/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
 </head>
 
 <body>
-    <div class="container">
+<div class="main">
+    <div class="container" style="padding-top:0">
     <form method="get" action="/search">
         <div class="row">
             <div class="col-md-6 col-md-push-3 col-sm-8 col-sm-push-2">
-                <img src="img/logo.png" width="80%" style="margin-left:10%; margin-bottom:15px;" class="img-responsive">
-                <input type="text" class="form-control" name="q" placeholder="Search worksheets, books, and more!">
+                <img src="img/logo-light.png" width="80%" style="margin-left:10%; margin-bottom:15px;" class="img-responsive">
             </div>
-        </div>
-
-        <div class="row text-center">
-            <button type="submit" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;">Search</button> <a href="/share" class="btn btn-success text-center" style="width:160px; margin-bottom: 10px;">Share Answers</a>
+            <div class="row text-center">
+                            <input type="text" autofocus class="search" name="q" placeholder="Search worksheets, bookwork, essays, and more!" autocomplete="off">
+                            <input type="submit" class="submit" value="GO">
+            </div>
         </div>
     </form>
     </div>
-
+</div>
     <?php include("includes/footer.php"); ?>
 </body>
 </html>

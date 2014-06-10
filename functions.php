@@ -16,7 +16,8 @@ define("DB_HOSTNAME", "thehwhack.cnsesznixrz2.us-west-2.rds.amazonaws.com");
 define("DB_NAME", "thehwhack");
 
 class Whack {
-
+	
+	// Authenticates a user.
 	function login($login, $password) {
 		$password_hashed = sha1($password);
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
@@ -35,7 +36,8 @@ class Whack {
 
 		return $array[0]["id"];
 	}
-
+	
+	// Creates a new user.
 	function register($username, $email, $password) {
 		$password_hashed = sha1($password);
 		$username = preg_replace("/[^A-Za-z0-9 ]/", '', $username);
@@ -47,6 +49,7 @@ class Whack {
 		return true;
 	}
 
+	// Shares homework.
 	function share($user, $title, $description, $file) {
 		$fileHash = sha1_file($file['tmp_name']);
 		$fileName = $file['name'];
@@ -65,11 +68,20 @@ class Whack {
 			));
 		return true;
 	}
-
-	function vote($isUpvote = 0) {
-		return true;
+	
+	// Casts vote on a HW
+	function vote($user, $post, $isUpvote = false) {
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
+		$query = "INSERT INTO `votes` (`user`, `post`, `isUpvote`) VALUES ('$user', '$post', '$isUpvote')";
+		$result = mysqli_query($mysqli, $query);
 	}
 
+	// Returns wether the user is allowed to vote.
+	function canVote($user, $hw) {
+		return true;
+	}
+	
+	// Downloads the file. If this is the first download, it also spends the credits.
 	function download($item) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$item_safe = mysqli_real_escape_string($mysqli,$item);
@@ -97,6 +109,8 @@ class Whack {
 		$row = mysqli_fetch_assoc($result);
 		return $row;
 	}
+	
+	// Returns search results for the query string.
 	function search($q) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$q_safe = mysqli_real_escape_string($mysqli,$q);
