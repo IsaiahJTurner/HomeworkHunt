@@ -6,7 +6,6 @@ $whack = new Whack();
 $hw = $whack->homework($hwID);
 $user_id = $whack->getProfileID();
 if (!$hw) die("Homework not found");
-
 function formatBytes($bytes, $precision = 2) { 
     $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
 
@@ -44,7 +43,15 @@ function formatBytes($bytes, $precision = 2) {
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
 	<script type="text/javascript" src="/js/script.js"></script>
-    <script src="/js/bootstrap.js" type="text/javascript">
+	<script type='text/javascript'>
+     $(document).ready(function () {
+     if ($("[rel=tooltip]").length) {
+     $("[rel=tooltip]").tooltip();
+     }
+   });
+  </script>
+	    <script src="/js/bootstrap.js" type="text/javascript"></script>
+	    
     <!-- Piwik -->
 <script type="text/javascript">
   var _paq = _paq || [];
@@ -75,8 +82,7 @@ function formatBytes($bytes, $precision = 2) {
                     Using our advanced algorithm, we have determined this homework to be of <strong>Good</strong> quality. We recommend you please take caution and verify answers whenever possible even for high quality homework.
                 </div>
                 <div class="row text-center" style="font-size:20px">
-                    <a id="upvote" class="btn btn-success"><i class="fa fa-thumbs-up"></i></a> 23  |  21
-					<a id="downvote" class="btn btn-danger"><i class="fa fa-thumbs-down"></i></a>
+                    <a id="upvote" class="btn btn-default"><i class="fa fa-thumbs-up"></i></a> <span id="rating"><?php echo($hw['rating']); ?></span> <a id="downvote" class="btn btn-default"><i class="fa fa-thumbs-down"></i></a>
                 </div>
             </div>
 
@@ -120,7 +126,7 @@ function formatBytes($bytes, $precision = 2) {
                                 	1 Credit
                                 	</div>
                                 	<div class="col-md-3 col-xs-6">
-                                	Posted By Username
+                                	By <?php echo($hw['by']); ?> <?php if ($hw['trusted']) { ?><a href="#" rel="tooltip" title="Trusted User"><i class="fa fa-bullseye"></i></a><?php } ?>
                                 	</div>
                                 </div>
                                 <hr>
@@ -132,10 +138,10 @@ function formatBytes($bytes, $precision = 2) {
                                 <div class="row col-lg-12 text-right">
                                 <?php if ($user_id) { ?>
                                 <form method="post" action="/api/download" target="_blank">
-                                <input type="hidden" name="id" value="<?php echo($hw['id']); ?>">
+                                <input type="hidden" id="postid" name="id" value="<?php echo($hw['id']); ?>">
                                 <?php } else { ?>
                                 <form method="post" action="/login" target="_blank">
-                                <input type="hidden" name="download" value="1">
+                                <input type="hidden" id="postid" name="id" value="<?php echo($hw['id']); ?>">
                                 <?php } ?>
                                     <input type="submit" class="btn btn-primary" style="width:140px; margin-bottom: 10px;" value="Download">
 									</form>

@@ -72,7 +72,7 @@ class Whack {
 	// Casts vote on a HW
 	function vote($user, $post, $isUpvote = false) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
-		$query = "INSERT INTO `votes` (`user`, `post`, `isUpvote`) VALUES ('$user', '$post', '$isUpvote')";
+			$query = "INSERT INTO `votes` (`user`, `post`, `isUpvote`) VALUES ('$user', '$post', '$isUpvote') ON DUPLICATE KEY UPDATE `isUpvote` = VALUES(`isUpvote`)";
 		$result = mysqli_query($mysqli, $query);
 	}
 
@@ -80,9 +80,13 @@ class Whack {
 	function canVote($user, $hw) {
 		return true;
 	}
-
-	// Downloads the file. If this is the first download, it also spends the credits.
-	function download($item) {
+	
+	function hasPurchased($user, $item) {
+		return true;
+	}
+	
+	// Returns a link to the file.
+		function download($item) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$item_safe = mysqli_real_escape_string($mysqli,$item);
 		$query = "SELECT `hash`,`file` FROM `submissions` WHERE `id` = '$item_safe'";
@@ -106,8 +110,22 @@ class Whack {
 		$query = "SELECT * FROM `submissions` WHERE `id` = '$id_safe'";
 		$result = mysqli_query($mysqli, $query);
 		if (!$result) return false;
-		$row = mysqli_fetch_assoc($result);
-		return $row;
+		$hw = mysqli_fetch_assoc($result);
+		
+		
+		$user = $hw["user"];
+		$result_2 = mysqli_query($mysqli, "SELECT `trusted`,`username` FROM `users` WHERE `id` = '$user'");
+		$row_2 = mysqli_fetch_assoc($result_2);
+		$hw["by"] = $row_2['username'];
+		$hw["trusted"] = $row_2["trusted"];
+		
+		
+		$result_3 = mysqli_query($mysqli, "SELECT SUM(CASE WHEN `isUpvote` THEN 1 ELSE -1 END) AS rating FROM `votes` WHERE `post` = '$id_safe'");
+		$row_3 = mysqli_fetch_assoc($result_3);
+		$hw["rating"] = $row_3['rating'];
+		
+		
+		return $hw;
 	}
 
 	// Returns search results for the query string.

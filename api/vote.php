@@ -2,22 +2,20 @@
 require_once("../functions.php");
 
 function respondError($errorCode, $errorMessage) {
-	die(json_encode(array("error" => array("code" => $errorCode, "message" => $errorMessage))));
+	die(json_encode(array("response" => array("code" => $errorCode, "message" => $errorMessage))));
 }
 
 $whack = new Whack();
 $user = $whack->getProfileID();
 if (!$user) {
-    respondError(3, "You must log in to vote.");
+    respondError(2, "You must log in to vote.");
 
 }
 $hw = intval($_POST['hw']);
-if (!$whack->canVote($user, $hw)) respondError(2, "Your vote has already been cast.");
-
-
-
-if ($_POST['isUpvote']) {
-	$whack->vote(true);
+if ($_POST['isUpvote'] == "true") {
+	$whack->vote($user, $hw, true);
+	respondError(1, "Upvoted" );
 } else {
-	$whack->vote(false);
+	$whack->vote($user, $hw, false);
+		respondError(1, "Downvoted");
 }
