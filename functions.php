@@ -120,7 +120,7 @@ class Whack {
 		$hw["trusted"] = $row_2["trusted"];
 		
 		
-		$result_3 = mysqli_query($mysqli, "SELECT SUM(CASE WHEN `isUpvote` THEN 1 ELSE -1 END) AS rating FROM `votes` WHERE `post` = '$id_safe'");
+		$result_3 = mysqli_query($mysqli, "SELECT COALESCE(SUM(CASE WHEN `isUpvote` THEN 1 ELSE -1 END),0) AS rating FROM `votes` WHERE `post` = '$id_safe'");
 		$row_3 = mysqli_fetch_assoc($result_3);
 		$hw["rating"] = $row_3['rating'];
 		
