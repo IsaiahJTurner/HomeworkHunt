@@ -24,7 +24,7 @@ if ($whack->getProfileID()) {
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/ios/icon157x157.png">
     <link rel="apple-touch-startup-image" href="/img/ios/splash.png">
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="/css/styles.css?dsfadsf" rel="stylesheet" type="text/css">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
     <script src="/js/bootstrap.js" type="text/javascript">

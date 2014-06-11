@@ -4,6 +4,7 @@ $hwID = end(explode('/', $_SERVER['REQUEST_URI']));
 require_once("../functions.php");
 $whack = new Whack();
 $hw = $whack->homework($hwID);
+$user_id = $whack->getProfileID();
 if (!$hw) die("Homework not found");
 
 function formatBytes($bytes, $precision = 2) { 
@@ -37,7 +38,7 @@ function formatBytes($bytes, $precision = 2) {
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/ios/icon157x157.png">
     <link rel="apple-touch-startup-image" href="/img/ios/splash.png">
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="/css/styles.css?dsfadsf" rel="stylesheet" type="text/css">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
@@ -107,27 +108,35 @@ function formatBytes($bytes, $precision = 2) {
                                <?php echo($hw['description']); ?>
                                 <hr>
                                 <div class="row">
-                                	<div class="col-xs-4">
-                                	File Extension: <?php echo(pathinfo($hw['file'], PATHINFO_EXTENSION)); ?>
+                                	<div class="col-md-3 col-xs-6">
+                                	.<?php echo(pathinfo($hw['file'], PATHINFO_EXTENSION)); ?> Extension
                                 	</div>
-                                	<div class="col-xs-4">
-                                	File Size: <?php
+                                	<div class="col-md-3 col-xs-6">
+                                	<?php
                                 	echo(formatBytes($hw['size'], 2));
                                 	?>
                                 	</div>
-                                	<div class="col-xs-4">
-                                	Cost: 1 Credit
+                                	<div class="col-md-3 col-xs-6">
+                                	1 Credit
+                                	</div>
+                                	<div class="col-md-3 col-xs-6">
+                                	Posted By Username
                                 	</div>
                                 </div>
                                 <hr>
-
+								<?php if (!$user_id) { ?>
                                 <div class="row col-lg-12">
                                     To download this entire homework assignment for 1 credit, you will need an account. Both accounts and credits are <strong>free</strong> and more credits may be earned by sharing quality homework.
                                 </div>
-
+								<?php } ?>
                                 <div class="row col-lg-12 text-right">
+                                <?php if ($user_id) { ?>
                                 <form method="post" action="/api/download" target="_blank">
                                 <input type="hidden" name="id" value="<?php echo($hw['id']); ?>">
+                                <?php } else { ?>
+                                <form method="post" action="/login" target="_blank">
+                                <input type="hidden" name="download" value="1">
+                                <?php } ?>
                                     <input type="submit" class="btn btn-primary" style="width:140px; margin-bottom: 10px;" value="Download">
 									</form>
                                 </div>

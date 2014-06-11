@@ -45,7 +45,9 @@ $searchPage = true;
         <tbody>
             <?php
             $results = $whack->search($_GET['q']);
-            if (!$results) echo "<tr><td>No matching results found.</td></tr>";
+            if ($results == false) {
+            echo "<tr><td>No matching results found.</td></tr>";
+            }
             else {
             	foreach ($whack->search($_GET['q']) as $result) {
 	            	echo "<tr><td><a href='/hw/".$result['id']."'>".htmlspecialchars($result['title'])."</a>";

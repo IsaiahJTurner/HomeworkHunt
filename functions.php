@@ -16,7 +16,7 @@ define("DB_HOSTNAME", "thehwhack.cnsesznixrz2.us-west-2.rds.amazonaws.com");
 define("DB_NAME", "thehwhack");
 
 class Whack {
-	
+
 	// Authenticates a user.
 	function login($login, $password) {
 		$password_hashed = sha1($password);
@@ -36,7 +36,7 @@ class Whack {
 
 		return $array[0]["id"];
 	}
-	
+
 	// Creates a new user.
 	function register($username, $email, $password) {
 		$password_hashed = sha1($password);
@@ -68,7 +68,7 @@ class Whack {
 			));
 		return true;
 	}
-	
+
 	// Casts vote on a HW
 	function vote($user, $post, $isUpvote = false) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
@@ -80,7 +80,7 @@ class Whack {
 	function canVote($user, $hw) {
 		return true;
 	}
-	
+
 	// Downloads the file. If this is the first download, it also spends the credits.
 	function download($item) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
@@ -94,7 +94,7 @@ class Whack {
 			$row['hash'].".".pathinfo($row['file'], PATHINFO_EXTENSION),
 			'5 minutes',
 			array(
-					'ResponseContentDisposition' => 'attachment; filename="'.$row['file'].'"'
+				'ResponseContentDisposition' => 'attachment; filename="'.$row['file'].'"'
 			)
 		);
 	}
@@ -109,13 +109,17 @@ class Whack {
 		$row = mysqli_fetch_assoc($result);
 		return $row;
 	}
-	
+
 	// Returns search results for the query string.
 	function search($q) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$q_safe = mysqli_real_escape_string($mysqli,$q);
 		$query = "SELECT `id`,`title`,`description` FROM `submissions` WHERE `title` LIKE '%$q_safe%' OR `description` LIKE '%$q_safe%'";
 		$result = mysqli_query($mysqli, $query);
+		if (!$result) return false;
+		if (mysqli_num_rows($result) == 0) {
+			return false; }
+
 		while ($row = mysqli_fetch_assoc($result)) {
 			$results[] = $row;
 		}

@@ -18,7 +18,7 @@
     <link rel="apple-touch-startup-image" href="/img/ios/splash.png">
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/css/styles.css?dsfadsf" rel="stylesheet" type="text/css">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
 <style type="text/css">
@@ -54,7 +54,7 @@ margin-top: 15px;
                 <img src="img/logo-light.png" width="80%" style="margin-left:10%; margin-bottom:15px;" class="img-responsive">
             </div>
             <div class="row text-center">
-                            <input type="text" autofocus class="search" name="q" placeholder="Search worksheets, bookwork, essays, and more!" autocomplete="off">
+                            <input type="text" autofocus class="search" name="q" placeholder="Search any worksheet, essay, workbook, or other assignment!" autocomplete="off">
                             <input type="submit" class="submit" value="GO">
             </div>
         </div>
