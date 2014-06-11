@@ -10,13 +10,13 @@ if ($whack->getProfileID()) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="the hw hack, hw hack, answers, homework, essays, papers, projects, hw">
+    <meta name="keywords" content="Homework Hunt, hw hunt, answers, homework, essays, papers, projects, hw">
     <meta name="description" content="Find answers to any class assignment shared by users like you! Fuel the community, upload your answers today! It's free!">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
 
-    <title>Sign in to The HW Hack</title>
+    <title>Sign in to Homework Hunt</title>
     <link rel="Shortcut Icon" type="image/ico" href="imgs/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon57x57.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon72x72.png">

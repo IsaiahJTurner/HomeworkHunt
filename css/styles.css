@@ -18,7 +18,9 @@ table {
 header img {
 	padding-top:10px;
 	height: 35px;
-}
+margin-bottom: 9px;
+
+	}
 
 #results {
 	margin-top: 10px;
