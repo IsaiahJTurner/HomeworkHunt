@@ -16,15 +16,10 @@ if ($whack->getProfileID()) {
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
 
-<<<<<<< HEAD
     <title>Sign Up for The HW Hack</title>
     <link rel="Shortcut Icon" type="image/ico" href="imgs/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon57x57.png">
-=======
-    <title>The HW Hack</title>
-    <link rel="Shortcut Icon" type="image/ico" href="imgs/ios/icon157x157.png">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon157x157.png">
->>>>>>> 01da3fec4d2c52749e4ebc131125d6c737c22b57
     <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon72x72.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/ios/icon157x157.png">
     <link rel="apple-touch-startup-image" href="/img/ios/splash.png">
@@ -78,11 +73,11 @@ if ($whack->getProfileID()) {
         </div>
 
         <div class="row text-center">
-            <input type="submit" value="Create an Account" class="btn btn-success text-center" style="width:160px; margin-bottom: 10px;" id="submit">
+            <input type="submit" value="Create an Account" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" id="submit">
         </div>
     </form>
     </div>
-
+<hr>
     <?php include("includes/footer.php"); ?>
 </body>
 </html>

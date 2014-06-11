@@ -21,6 +21,11 @@
     <link href="/css/styles.css?dsfadsf" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
+<style type="text/css">
+footer {
+margin-top: 15px;
+}
+</style>
     <script src="/js/bootstrap.js" type="text/javascript">
 </script>
 <!-- Piwik -->

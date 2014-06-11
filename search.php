@@ -44,16 +44,21 @@ $searchPage = true;
         <table id="results">
         <tbody>
             <?php
+            $results = $whack->search($_GET['q']);
+            if (!$results) echo "<tr><td>No matching results found.</td></tr>";
+            else {
             	foreach ($whack->search($_GET['q']) as $result) {
 	            	echo "<tr><td><a href='/hw/".$result['id']."'>".htmlspecialchars($result['title'])."</a>";
 	            	$maxDescriptionLength = 300;
 	            	if (strlen($result['description']) > $maxDescriptionLength) $truncation = "..."; else $truncation = ""; 
 					echo "<p>".htmlspecialchars(substr($result['description'],0,$maxDescriptionLength).$truncation)."</p></td></tr>";
             	}
+            	}
             ?>
             </tbody>
         </table>
     </div>
+    <hr>
     <?php include("includes/footer.php"); ?>
 </body>
 </html>

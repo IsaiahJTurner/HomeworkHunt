@@ -59,14 +59,14 @@ if ($whack->getProfileID()) {
                         <label for="exampleInputPassword1">Password</label> <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
                     </div>
                     <div class="text-center">
-					<input type="submit" value="Log in" class="btn btn-success text-center" style="width:160px; margin-bottom: 10px;">
+					<input type="submit" value="Log in" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;">
                     </div>
                 </div>
             </div>
 
         </form>
     </div>
-
+<hr>
     <?php include("includes/footer.php"); ?>
 </body>
 </html>

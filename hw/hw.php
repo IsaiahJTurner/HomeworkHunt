@@ -128,16 +128,18 @@ function formatBytes($bytes, $precision = 2) {
                                 <div class="row col-lg-12 text-right">
                                 <form method="post" action="/api/download" target="_blank">
                                 <input type="hidden" name="id" value="<?php echo($hw['id']); ?>">
-                                    <input type="submit" class="btn btn-success" style="width:140px; margin-bottom: 10px;" value="Download">
+                                    <input type="submit" class="btn btn-primary" style="width:140px; margin-bottom: 10px;" value="Download">
 									</form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    Comments feature coming soon.
+                    <p class="text-center" style="margin-top:15px;">Comments feature coming soon.</p>
                 </div>
             </div>
         </div>
-    </div><?php include("../includes/footer.php"); ?>
+    </div>
+    <hr>
+    <?php include("../includes/footer.php"); ?>
 </body>
 </html>

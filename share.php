@@ -101,12 +101,12 @@ if (!$whack->getProfileID()) {
                                                 <div style="position:relative;">
                                                     <a class='btn btn-default' href='javascript:;'>Select File... <input type="file" name="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
 	                                                    
-                                                    </a> &nbsp; <span class='label label-info' id="upload-file-info"></span>
+                                                    </a> &nbsp; <span class='label label-primary' id="upload-file-info"></span>
                                                 </div>
                                             </div>
 
                                             <div class="col-xs-6 text-right">
-                                                <input type="submit" class="btn btn-success" style="width:160px; margin-bottom: 10px;" value="Share Answers">
+                                                <input type="submit" class="btn btn-primary" style="width:160px; margin-bottom: 10px;" value="Share Answers">
                                             </div>
                                         </div>
                                     </div>
@@ -117,6 +117,8 @@ if (!$whack->getProfileID()) {
                 </div>
             </div>
         </div>
-    </div><?php include("includes/footer.php"); ?>
+    </div>
+    <hr>
+    <?php include("includes/footer.php"); ?>
 </body>
 </html>
