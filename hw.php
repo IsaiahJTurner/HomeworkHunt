@@ -1,7 +1,7 @@
 <?php
 if (substr_count($_SERVER['REQUEST_URI'], "/") != 2) die("Homework not found");
 $hwID = end(explode('/', $_SERVER['REQUEST_URI']));
-require_once("../functions.php");
+require_once("functions.php");
 $whack = new Whack();
 $hw = $whack->homework($hwID);
 $user_id = $whack->getProfileID();
@@ -71,7 +71,7 @@ var _paq = _paq || [];
 <body>
     <noscript>
     <p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
-    <?php include("../includes/header.php"); ?>
+    <?php include("includes/header.php"); ?>
 
     <div class="container">
         <div class="col-lg-8 col-lg-push-2 col-md-10 col-md-push-1">
@@ -111,13 +111,8 @@ var _paq = _paq || [];
                 </div>
 
                 <div class="col-xs-6 text-right">
-                    <?php if ($user_id) { ?>
-
                     <form method="post" action="/api/download" target="_blank">
-                        <input type="hidden" id="postid" name="id" value="<?php echo($hw['id']); ?>"> <?php } else { ?>
-
-                        <form method="post" action="/login" target="_blank">
-                            <input type="hidden" id="postid" name="id" value="<?php echo($hw['id']); ?>"> <?php } ?> <input type="submit" class="btn btn-primary" style="width:140px; margin-bottom: 10px;" value="Download">
+                            <input type="hidden" id="postid" name="id" value="<?php echo($hw['id']); ?>"> <input type="submit" class="btn btn-primary" style="width:140px; margin-bottom: 10px;" value="Download">
                         </form>
                     </form>
                 </div>
@@ -127,6 +122,6 @@ var _paq = _paq || [];
         </div>
     </div>
     <hr>
-    <?php include("../includes/footer.php"); ?>
+    <?php include("includes/footer.php"); ?>
 </body>
 </html>

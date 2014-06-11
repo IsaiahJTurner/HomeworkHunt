@@ -50,7 +50,7 @@ if (!$whack->getProfileID()) {
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-push-1 col-sm-3">
+            <div class="col-sm-3">
                 <h4 class="text-center">Import From Cloud</h4>
 
                 <div class="row text-center">
@@ -75,7 +75,7 @@ if (!$whack->getProfileID()) {
                 </div>
             </div>
 
-            <div class="col-lg-7 col-lg-push-1 col-sm-9">
+            <div class="col-sm-9">
                 <div class="panel-group" id="accordion">
                     <div class="panel panel-default">
                         <div class="panel-heading">

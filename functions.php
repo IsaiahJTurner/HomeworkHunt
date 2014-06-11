@@ -85,8 +85,8 @@ class Whack {
 		return true;
 	}
 	
-	// Returns a link to the file.
-		function download($item) {
+	// Returns a link to the hw.
+		function getURL($item) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$item_safe = mysqli_real_escape_string($mysqli,$item);
 		$query = "SELECT `hash`,`file` FROM `submissions` WHERE `id` = '$item_safe'";

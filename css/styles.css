@@ -113,6 +113,10 @@ header .row {
 	margin-top:5px;
 }
 
+button {
+	outline:none;
+}
+
 .btn {
 	border:none;
 }
@@ -137,5 +141,15 @@ header .row {
 @media screen and (max-width: 768px) {
 	.status {
 		margin-top:75px;
+	}
+}
+
+@media screen and (max-width: 768px),screen and (max-height: 320px) {
+	header {
+		position:relative;
+	}
+	
+	.container {
+		padding-top:15px;
 	}
 }

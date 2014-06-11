@@ -1,4 +1,11 @@
 $(document).ready(function() {
+
+
+
+
+
+
+
 	var upvoteActive = false;
 	var downvoteActive = false;
 	$('#upvote').click(function(evt) {
@@ -39,6 +46,9 @@ $(document).ready(function() {
 	});
 	
 	
+	
+	
+	
 	$('#downvote').click(function(evt) {
 		downvoteActive = true;
 		upvoteActive = false;
@@ -75,4 +85,28 @@ $(document).ready(function() {
 			$(this).removeClass('btn-danger');
 		}
 	});
+	
+	
+	
+	
+	$('#download').click(function(evt) {
+		var hw = $("#postid").val();
+		$.ajax({
+			url: "/api/download",
+			type: "POST",
+			data: {
+				hw: hw
+			},
+			success: function(data, textStatus, jqXHR) {
+			obj = JSON.parse(data);
+			if (obj['response']['code'] == 2) {
+				window.location = "/login";
+			}
+				console.log(data);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {}
+		});
+	});
+	
+	
 });
