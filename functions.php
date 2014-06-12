@@ -109,8 +109,9 @@ class Whack {
 		$id_safe = mysqli_real_escape_string($mysqli,$id);
 		$query = "SELECT * FROM `submissions` WHERE `id` = '$id_safe'";
 		$result = mysqli_query($mysqli, $query);
-		if (!$result) return false;
-		$hw = mysqli_fetch_assoc($result);
+if (mysqli_num_rows($result) == 0) {
+			return false;
+		}		$hw = mysqli_fetch_assoc($result);
 		
 		
 		$user = $hw["user"];
@@ -136,7 +137,8 @@ class Whack {
 		$result = mysqli_query($mysqli, $query);
 		if (!$result) return false;
 		if (mysqli_num_rows($result) == 0) {
-			return false; }
+			return false;
+		}
 
 		while ($row = mysqli_fetch_assoc($result)) {
 			$results[] = $row;

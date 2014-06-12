@@ -53,6 +53,10 @@ header img {
 	padding-top:70px;
 }
 
+footer {
+	margin-top:25px;
+}
+
 footer .container {
 	padding-top:0;
 }
@@ -138,15 +142,67 @@ button {
 	box-shadow:none;
 }
 
+header ul {
+	position:absolute;
+	margin-top:10px;
+	text-align:center;
+	text-align:right;
+	width:100%;
+	left:0;
+}
+
+header ul li {
+	font-size:15px;
+	display:inline;
+}
+
+header ul li a {
+	padding-left:5px;
+	padding-right:5px;
+}
+
+header ul li a:hover {
+	text-decoration:none;
+	color:#fff;
+	padding-bottom:16px;
+	border-bottom-width:4px;
+	border-bottom-color:#fff;
+	border-bottom-style:solid;
+}
+
+header a {
+	color:#fff;
+}
+
+.navigation {
+	height:44px;
+}
+
 @media screen and (max-width: 768px) {
+	/*.submit {
+				font-size: 15px;
+				left: 27px;
+				padding: 4px;
+			}
+			.search {
+				padding: 5px 45px 6px 15px;
+			}*/
 	.status {
 		margin-top:75px;
+	}
+	
+	header ul {
+		text-align:center;
 	}
 }
 
 @media screen and (max-width: 768px),screen and (max-height: 320px) {
 	header {
 		position:relative;
+	}
+	
+	.status {
+		margin-top:0;
 	}
 	
 	.container {

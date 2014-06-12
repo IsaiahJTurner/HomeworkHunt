@@ -5,7 +5,7 @@ require_once("functions.php");
 $whack = new Whack();
 $hw = $whack->homework($hwID);
 $user_id = $whack->getProfileID();
-if (!$hw) die("Homework not found");
+if ($hw == false) die("Homework not found");
 function formatBytes($bytes, $precision = 2) {
     $units = array('B', 'KB', 'MB', 'GB', 'TB');
 

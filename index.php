@@ -21,11 +21,6 @@
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
-<style type="text/css">
-footer {
-margin-top: 15px;
-}
-</style>
     <script src="/js/bootstrap.js" type="text/javascript">
 </script>
 <!-- Piwik -->
@@ -50,7 +45,7 @@ margin-top: 15px;
     <div class="container" style="padding-top:0">
     <form method="get" action="/search">
         <div class="row">
-            <div class="col-md-6 col-md-push-3 col-sm-8 col-sm-push-2">
+            <div class="col-md-6 col-md-push-3 col-xs-8 col-xs-push-2 text-center">
                 <img src="img/logo-light.png" width="80%" style="margin-left:10%; margin-bottom:15px;" class="img-responsive">
             </div>
             <div class="row text-center">
