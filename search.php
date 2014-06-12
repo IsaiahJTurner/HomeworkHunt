@@ -16,7 +16,8 @@ if (!isset($_GET['q'])) $_GET['q'] = "";
     <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon157x157.png">
     <link rel="apple-touch-icon" sizes="114x114" href="/img/ios/icon157x157.png">
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="/css/styles.css?dadsfsfadsf" rel="stylesheet" type="text/css">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
     <script src="/js/bootstrap.js" type="text/javascript">

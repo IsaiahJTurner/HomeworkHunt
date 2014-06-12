@@ -1,5 +1,6 @@
 <?php
-/* commented until it works, don't touch this file.
+require_once("../functions.php");
+header('Content-Type: application/json');
 function respond($errorCode, $errorMessage) {
 	die(json_encode(array("response" => array("code" => $errorCode, "message" => $errorMessage))));
 }
@@ -7,29 +8,14 @@ function respond($errorCode, $errorMessage) {
 $whack = new Whack();
 $user = $whack->getProfileID();
 if (!$user) {
-    respondError(2, "You must log in to download files.");
+	respond(2, "You must log in to download files.");
 }
 $hw = intval($_POST['hw']);
-if ($_POST['isUpvote'] == "true") {
-	$whack->vote($user, $hw, true);
-	respondError(1, "Upvoted" );
-} else {
-	$whack->vote($user, $hw, false);
-		respondError(1, "Downvoted");
+if (!$whack->hasPurchased($user, $hw)) {
+	// spend credits
 }
-
-
-
-
-
-$whack = new Whack();
-$downloadLink = $whack->getURL($_POST['id']);
-echo($downloadLink);
+$downloadLink = $whack->getURL($hw);
 if (!$downloadLink) {
-	header("Location: /login");
-	die("You need to log in to download this file.");
+	respond(3, "Homework not found.");
 }
-
-header("Location: $downloadLink");
-die("<a href='$downloadLink'>$downloadLink</a>");
-print_r($_POST);
+respond(1, $downloadLink);

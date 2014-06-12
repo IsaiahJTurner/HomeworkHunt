@@ -1,1 +1,4 @@
 analytics/tmp/*
+config.php
+vendor/*
+analytics/vendor/*

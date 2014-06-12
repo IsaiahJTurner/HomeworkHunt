@@ -7,14 +7,7 @@ require 'vendor/autoload.php';
 use Aws\S3\S3Client;
 
 
-$_SERVER['AWS_ACCESS_KEY_ID'] = "AKIAJNBICZKD35BRHN5A";
-$_SERVER['AWS_SECRET_KEY'] = "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";
-
-define("DB_USERNAME", "root");
-define("DB_PASSWORD", "F>L2}M9*8%7]B6F");
-define("DB_HOSTNAME", "thehwhack.cnsesznixrz2.us-west-2.rds.amazonaws.com");
-define("DB_NAME", "thehwhack");
-
+require("config.php");
 class Whack {
 
 	// Authenticates a user.
@@ -72,7 +65,7 @@ class Whack {
 	// Casts vote on a HW
 	function vote($user, $post, $isUpvote = false) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
-			$query = "INSERT INTO `votes` (`user`, `post`, `isUpvote`) VALUES ('$user', '$post', '$isUpvote') ON DUPLICATE KEY UPDATE `isUpvote` = VALUES(`isUpvote`)";
+		$query = "INSERT INTO `votes` (`user`, `post`, `isUpvote`) VALUES ('$user', '$post', '$isUpvote') ON DUPLICATE KEY UPDATE `isUpvote` = VALUES(`isUpvote`)";
 		$result = mysqli_query($mysqli, $query);
 	}
 
@@ -80,17 +73,20 @@ class Whack {
 	function canVote($user, $hw) {
 		return true;
 	}
-	
+
 	function hasPurchased($user, $item) {
 		return true;
 	}
-	
+
 	// Returns a link to the hw.
-		function getURL($item) {
+	function getURL($item) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$item_safe = mysqli_real_escape_string($mysqli,$item);
 		$query = "SELECT `hash`,`file` FROM `submissions` WHERE `id` = '$item_safe'";
 		$result = mysqli_query($mysqli, $query);
+		if (mysqli_num_rows($result) == 0) {
+			return false;
+		}
 		$row = mysqli_fetch_assoc($result);
 		$s3 = S3Client::factory();
 		return $s3->getObjectUrl(
@@ -109,23 +105,23 @@ class Whack {
 		$id_safe = mysqli_real_escape_string($mysqli,$id);
 		$query = "SELECT * FROM `submissions` WHERE `id` = '$id_safe'";
 		$result = mysqli_query($mysqli, $query);
-if (mysqli_num_rows($result) == 0) {
+		if (mysqli_num_rows($result) == 0) {
 			return false;
-		}		$hw = mysqli_fetch_assoc($result);
-		
-		
+		}  $hw = mysqli_fetch_assoc($result);
+
+
 		$user = $hw["user"];
 		$result_2 = mysqli_query($mysqli, "SELECT `trusted`,`username` FROM `users` WHERE `id` = '$user'");
 		$row_2 = mysqli_fetch_assoc($result_2);
 		$hw["by"] = $row_2['username'];
 		$hw["trusted"] = $row_2["trusted"];
-		
-		
+
+
 		$result_3 = mysqli_query($mysqli, "SELECT COALESCE(SUM(CASE WHEN `isUpvote` THEN 1 ELSE -1 END),0) AS rating FROM `votes` WHERE `post` = '$id_safe'");
 		$row_3 = mysqli_fetch_assoc($result_3);
 		$hw["rating"] = $row_3['rating'];
-		
-		
+
+
 		return $hw;
 	}
 

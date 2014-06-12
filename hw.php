@@ -39,7 +39,7 @@ function formatBytes($bytes, $precision = 2) {
     <link rel="apple-touch-startup-image" href="/img/ios/splash.png">
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
     <script type="text/javascript" src="/js/script.js">
@@ -81,7 +81,7 @@ var _paq = _paq || [];
 <br>
             <div class="row">
                 <div class="col-sm-3 col-xs-6">
-                    .<?php echo(pathinfo($hw['file'], PATHINFO_EXTENSION)); ?> Extension
+                    <?php echo(strtoupper(pathinfo($hw['file'], PATHINFO_EXTENSION))); ?> File
                 </div>
 
                 <div class="col-sm-3 col-xs-6">
@@ -111,8 +111,7 @@ var _paq = _paq || [];
                 </div>
 
                 <div class="col-xs-6 text-right">
-                    <form method="post" action="/api/download" target="_blank">
-                            <input type="hidden" id="postid" name="id" value="<?php echo($hw['id']); ?>"> <input type="submit" class="btn btn-primary" style="width:140px; margin-bottom: 10px;" value="Download">
+                            <input type="hidden" id="postid" name="id" value="<?php echo($hw['id']); ?>"> <a class="btn btn-primary" style="width:140px; margin-bottom: 10px;" id="download">Download</a>
                         </form>
                     </form>
                 </div>
