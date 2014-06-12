@@ -1,7 +1,7 @@
-Homework Hunt
+![Homework Hunt](http://homeworkhunt.com/img/logo-dark.png)
 =========
 
-Homework Hunt is a state of the art site that provides two primary services. 
+Homework Hunt is a state of the art site that provides two primary services.
 
   - Sharing homework.
   - Finding answers to assignments.
@@ -30,7 +30,7 @@ Homework Hunt relies on a number of projects to work properly. Several are in bo
 * [Twitter Bootstrap] - A sleek, intuitive, and powerful mobile first front-end framework.
 * [Piwik] - Piwik is a open source web analytics application that runs on a PHP/MySQL server.
 * [Font Awesome] - Font Awesome gives you scalable vector icons that can be customized.
-* [jQuery] - jQuery is a fast, small, and feature-rich JavaScript library. 
+* [jQuery] - jQuery is a fast, small, and feature-rich JavaScript library.
 * [Apache] - A secure, efficient and extensible server that provides HTTP services.
 * [NGINX] - NGINX is the most popular open source web server for high-traffic websites
 
@@ -48,7 +48,15 @@ cd analytics
 composer install
 ```
 
-To finish the installation, open config.php and enter your own API keys and database connection settings.
+To finish the installation, open config.php and enter your own API keys and database connection settings. If you would like to set up MySQL integration with Algolia, please follow these steps.
+
+  1. Move jdbc-connector.sh and config.sample.json to a new directory that is not accessible by the web.
+  2. Rename config.sample.json to config.json.
+  3. Open config.json and enter the requested data.
+  4. `cd` to the directory containing the jdbc-connector.sh script.
+  5. Execute `chmod +x jdbc-connector.s` in the terminal.
+  6. Ececute `./jdbc-connector.sh config.json` in the terminal.
+
 
 License
 ----

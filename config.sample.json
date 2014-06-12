@@ -1,0 +1,12 @@
+{
+  "selectQuery" : "SELECT i.id, i.title, i.description, i.file, i.content, COALESCE(SUM(CASE WHEN a.isUpvote THEN 1 ELSE -1 END),0) AS rating FROM submissions AS i LEFT JOIN votes AS a ON i.id = a.post GROUP BY i.id",
+  "updateQuery" : "SELECT i.id, i.title, i.description, i.file, i.content, COALESCE(SUM(CASE WHEN a.isUpvote THEN 1 ELSE -1 END),0) AS rating FROM submissions AS i LEFT JOIN votes AS a ON i.id = a.post WHERE i.updated > _$ GROUP BY i.id",
+  "primaryField" : "id",
+  "updatedAtField": "updated",
+  "source" : "jdbc:mysql://HostnameOfYourDatabase/YourDatabaseName",
+  "username" : "Your MYSQL Username",
+  "password" : "Your MYSQL Password",
+  "applicationId" : "Your Algolia Application ID",
+  "apiKey" : "Your Algolia API Key",
+  "index" : "Your Algolia Index Name",
+}
