@@ -2,6 +2,7 @@
 require_once("functions.php");
 $whack = new Whack();
 $searchPage = true;
+if (!isset($_GET['q'])) $_GET['q'] = "";
 ?><!DOCTYPE html>
 
 <html lang="en">
