@@ -10,7 +10,7 @@ if (!isset($_GET['q'])) $_GET['q'] = "";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <title><?php echo htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8'); ?></title>
+    <title>Loading...</title>
     <link rel="Shortcut Icon" type="image/ico" href="imgs/ios/icon157x157.png">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon157x157.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon157x157.png">
@@ -20,6 +20,8 @@ if (!isset($_GET['q'])) $_GET['q'] = "";
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
+<script src="/js/script.js" type="text/javascript">
+</script>
     <script src="/js/bootstrap.js" type="text/javascript">
 </script>
 <!-- Piwik -->
@@ -28,24 +30,24 @@ if (!isset($_GET['q'])) $_GET['q'] = "";
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://localhost/analytics/";
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://homeworkhunt.com/analytics/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
     _paq.push(['setSiteId', 1]);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
     g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
-<noscript><p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<noscript><p><img src="http://homeworkhunt.com/analytics/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
 <!-- End Piwik Code -->
 </head>
 
 <body>
 <?php include("includes/header.php"); ?>
     <div class="container">
-    <div class="status">Search results for: <?php echo htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8'); ?></div>
-        <table id="results">
-        <tbody>
-            <?php
+    <div id="status" class="status">Loading...</div>
+        <table>
+        <tbody id="results">
+            <?php /*
             $results = $whack->search($_GET['q']);
             if ($results == false) {
             echo "<tr><td>No matching results found.</td></tr>";
@@ -57,7 +59,7 @@ if (!isset($_GET['q'])) $_GET['q'] = "";
 	            	if (strlen($result['description']) > $maxDescriptionLength) $truncation = "..."; else $truncation = ""; 
 					echo "<p>".htmlspecialchars(substr($result['description'],0,$maxDescriptionLength).$truncation)."</p></td></tr>";
             	}
-            	}
+            	}*/
             ?>
             </tbody>
         </table>

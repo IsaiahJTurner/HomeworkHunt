@@ -5,7 +5,10 @@ header {
 	background:#17C3B9;
 	width:100%;
 }
-
+#results em {
+	font-style: normal;
+	font-weight: bolder;
+}
 .main {
 	background:#17C3B9;
 	padding:100px 0;

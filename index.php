@@ -23,6 +23,8 @@
 </script>
     <script src="/js/bootstrap.js" type="text/javascript">
 </script>
+    <script src="/js/script.js" type="text/javascript">
+</script>
 <!-- Piwik -->
 <script type="text/javascript">
   var _paq = _paq || [];

@@ -12,8 +12,8 @@ $whack = new Whack();
                 <div class="col-lg-4 col-sm-6">
                     <?php  ?>
 
-                    <form action="/search" method="get" style="display: inline;">
-                        <input type="search" name="q" value="<?php if(isset($searchPage) && $searchPage = true) { echo htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8'); } ?>" class="search-header" placeholder="Search"><input type="submit" value="GO" class="submit">
+                    <form action="<?php if(isset($searchPage) && $searchPage = true) echo  "#"; else echo "/search"; ?>" method="get" style="display: inline;">
+                        <input type="search" name="q" value="<?php if(isset($searchPage) && $searchPage = true) { echo htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8'); } ?>" class="search-header" placeholder="Search" id="search"><input type="submit" value="GO" class="submit">
                     </form>
                 </div>
 
