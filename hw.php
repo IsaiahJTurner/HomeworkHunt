@@ -3,8 +3,8 @@ if (substr_count($_SERVER['REQUEST_URI'], "/") != 2) die("Homework not found");
 $hwID = end(explode('/', $_SERVER['REQUEST_URI']));
 require_once("functions.php");
 $whack = new Whack();
-$hw = $whack->homework($hwID);
 $user_id = $whack->getProfileID();
+$hw = $whack->homework($hwID, $user_id);
 if ($hw == false) die("Homework not found");
 function formatBytes($bytes, $precision = 2) {
     $units = array('B', 'KB', 'MB', 'GB', 'TB');
@@ -107,7 +107,7 @@ var _paq = _paq || [];
 
             <div class="row">
                 <div class="col-xs-6">
-                    <a id="upvote" class="btn btn-sm btn-default"><i class="fa fa-thumbs-up"><?php ?></i></a> <span id="rating"><?php echo($hw['rating']); ?></span> <a id="downvote" class="btn btn-sm btn-default"><i class="fa fa-thumbs-down"><?php ?></i></a>
+                    <a id="upvote" class="btn btn-sm btn-default<?php if ($hw['voteStatus'] == "upvoted") echo " btn-primary"; ?>"><i class="fa fa-thumbs-up"><?php ?></i></a>&nbsp;&nbsp;<span id="rating"><?php echo($hw['rating']); ?></span>&nbsp;&nbsp;<a id="downvote" class="btn btn-sm btn-default<?php if ($hw['voteStatus'] == "downvoted") echo " btn-primary";?>"><i class="fa fa-thumbs-down"><?php ?></i></a>
                 </div>
 
                 <div class="col-xs-6 text-right">

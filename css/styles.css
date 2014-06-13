@@ -18,7 +18,11 @@ table {
 	border:0;
 	width:100%;
 }
-
+#rating {
+	min-width: 37px;
+display: inline-block;
+text-align: center;
+}
 header img {
 	padding-top:10px;
 	height:35px;

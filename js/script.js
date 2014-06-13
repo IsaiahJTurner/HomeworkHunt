@@ -1,7 +1,24 @@
 $(document).ready(function() {
-	var upvoteActive = false;
-	var downvoteActive = false;
+	downvoteActive = false;
+	upvoteActive = false;
+	if ($('#upvote').hasClass("btn-primary")) {
+		$('#upvote').css("background-color", "#17C3B9");
+
+		upvoteActive = true;
+	}
+	if ($('#downvote').hasClass("btn-primary")) {
+		$('#downvote').css("background-color", "#17C3B9");
+		downvoteActive = true;
+	}
 	$('#upvote').click(function(evt) {
+		if (upvoteActive) {
+			return;
+		}
+		if (downvoteActive) {
+			$("#rating").html(parseInt($("#rating").html()) + 2);
+		} else {
+			$("#rating").html(parseInt($("#rating").html()) + 1);
+		}
 		upvoteActive = true;
 		downvoteActive = false;
 		var hw = $("#postid").val();
@@ -20,23 +37,31 @@ $(document).ready(function() {
 			},
 			error: function(jqXHR, textStatus, errorThrown) {}
 		});
-		$('#downvote').removeClass('btn-danger');
+		$('#downvote').removeClass('btn-primary');
 		$('#downvote').css("background-color", "");
-		$(this).addClass('btn-success');
-		$(this).css("background-color", "#47a447");
+		$(this).addClass('btn-primary');
+		$(this).css("background-color", "#17C3B9");
 	});
 	$('#upvote').hover(
 
 	function() {
 		if (upvoteActive == false) {
-			$(this).addClass('btn-success');
+			$(this).addClass('btn-primary');
 		}
 	}, function() {
 		if (upvoteActive == false) {
-			$(this).removeClass('btn-success');
+			$(this).removeClass('btn-primary');
 		}
 	});
 	$('#downvote').click(function(evt) {
+		if (downvoteActive) {
+			return;
+		}
+		if (upvoteActive) {
+			$("#rating").html(parseInt($("#rating").html()) - 2);
+		} else {
+			$("#rating").html(parseInt($("#rating").html()) - 1);
+		}
 		downvoteActive = true;
 		upvoteActive = false;
 		var hw = $("#postid").val();
@@ -55,20 +80,20 @@ $(document).ready(function() {
 			},
 			error: function(jqXHR, textStatus, errorThrown) {}
 		});
-		$('#upvote').removeClass('btn-success');
+		$('#upvote').removeClass('btn-primary');
 		$('#upvote').css("background-color", "");
-		$(this).addClass('btn-danger');
-		$(this).css("background-color", "#d2322d");
+		$(this).addClass('btn-primary');
+		$(this).css("background-color", "#17C3B9");
 	});
 	$('#downvote').hover(
 
 	function() {
 		if (downvoteActive == false) {
-			$(this).addClass('btn-danger');
+			$(this).addClass('btn-primary');
 		}
 	}, function() {
 		if (downvoteActive == false) {
-			$(this).removeClass('btn-danger');
+			$(this).removeClass('btn-primary');
 		}
 	});
 	$('#download').click(function(evt) {
