@@ -10,7 +10,7 @@ if (!isset($_GET['q'])) $_GET['q'] = "";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <title>Loading...</title>
+    <title>Search</title>
     <link rel="Shortcut Icon" type="image/ico" href="imgs/ios/icon157x157.png">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon157x157.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon157x157.png">

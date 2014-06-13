@@ -16,16 +16,16 @@ class Whack {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$login = mysqli_escape_string($mysqli,$login);
 		$query = "SELECT `id` FROM `users` WHERE (`email` = '$login' OR `username` = '$login') AND `password` = '$password_hashed'";
-		$result = mysqli_query($mysqli, $query);
+		$result = mysqli_query($mysqli, $query) or die("Error " . mysqli_error($link));
 		if (!$result) return false;
 		$array = mysqli_fetch_array($result);
-		$user_id = $array[0]["id"];
+		$user = $array[0]["id"];
 		$time = date('YmdHis');
 
-		$sid = sha1($time + $user_id);
-		$query_2 = "INSERT INTO `sessions` (`id`, `sid`) VALUES ('$user_id', '$sid')";
+		$sid = sha1($time + $user);
+		$query_2 = "INSERT INTO `sessions` (`id`, `sid`) VALUES ('$user', '$sid')";
 		setcookie("sid", $sid, 2147483647, "/");
-		mysqli_query($mysqli, $query_2);
+		mysqli_query($mysqli, $query_2)  or die("Error " . mysqli_error($link));
 
 		return $array[0]["id"];
 	}
@@ -37,7 +37,7 @@ class Whack {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$email = mysqli_escape_string($mysqli,$email);
 		$query = "INSERT INTO `users` (`username`, `email`, `password`) VALUES ('$username', '$email', '$password_hashed')";
-		$result = mysqli_query($mysqli, $query);
+		$result = mysqli_query($mysqli, $query)  or die("Error " . mysqli_error($link));
 		if (!$result) return false;
 		return true;
 	}
@@ -51,7 +51,13 @@ class Whack {
 		$title_safe = mysqli_real_escape_string($mysqli,$title);
 		$description_safe = mysqli_real_escape_string($mysqli,$description);
 		$query = "INSERT INTO `submissions` (`user`, `title`, `description`,`hash`, `file`, `size`) VALUES ('$user', '$title_safe', '$description_safe', '$fileHash', '$fileName', '$fileSize')";
-		$result = mysqli_query($mysqli, $query);
+		$result = mysqli_query($mysqli, $query)  or die("Error " . mysqli_error($link));
+
+
+		$post = mysqli_insert_id($mysqli);
+		$query_2 = "INSERT INTO `votes` (`user`, `post`, `isUpvote`) VALUES ('$user', '$post', '1')";
+		mysqli_query($mysqli, $$query_2);
+
 
 		$s3 = S3Client::factory();
 		$s3->putObject(array(
@@ -75,9 +81,18 @@ class Whack {
 	}
 
 	function hasPurchased($user, $item) {
-		return true;
+		return false;
 	}
-
+	function purchase($user, $item, $cost) {
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
+		$query = "INSERT INTO `purchases` (`user`, `item`, `cost`, `downloads`) VALUES ('$user', '$item', '$cost', '1') ON DUPLICATE KEY UPDATE `downloads` = `downloads` + 1, `cost` = `cost` + '$cost'";
+		$result = mysqli_query($mysqli, $query);
+		return false;
+	}
+	
+	function getPrice($item) {
+		return 5;
+	}
 	// Returns a link to the hw.
 	function getURL($item) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
@@ -104,7 +119,7 @@ class Whack {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$id_safe = mysqli_real_escape_string($mysqli,$id);
 		$query = "SELECT * FROM `submissions` WHERE `id` = '$id_safe'";
-		$result = mysqli_query($mysqli, $query);
+		$result = mysqli_query($mysqli, $query) or die("Error " . mysqli_error($link));
 		if (mysqli_num_rows($result) == 0) {
 			return false;
 		}
@@ -112,28 +127,29 @@ class Whack {
 
 
 		$user = $hw["user"];
-		$result_2 = mysqli_query($mysqli, "SELECT `trusted`,`username` FROM `users` WHERE `id` = '$user'");
+		$result_2 = mysqli_query($mysqli, "SELECT `trusted`,`username` FROM `users` WHERE `id` = '$user'")  or die("Error " . mysqli_error($link));
 		$row_2 = mysqli_fetch_assoc($result_2);
 		$hw["by"] = $row_2['username'];
 		$hw["trusted"] = $row_2["trusted"];
 
 
-		$result_3 = mysqli_query($mysqli, "SELECT COALESCE(SUM(CASE WHEN `isUpvote` THEN 1 ELSE -1 END),0) AS rating FROM `votes` WHERE `post` = '$id_safe'");
+		$result_3 = mysqli_query($mysqli, "SELECT COALESCE(SUM(CASE WHEN `isUpvote` THEN 1 ELSE -1 END),0) AS rating FROM `votes` WHERE `post` = '$id_safe'") or die("Error " . mysqli_error($link));
 		$row_3 = mysqli_fetch_assoc($result_3);
 		$hw["rating"] = $row_3['rating'];
-		
-		
-		$result_4 = mysqli_query($mysqli, "SELECT `isUpvote` FROM `votes` WHERE `user` = '$user' AND `post` = '$id_safe'");
+
+
+		$result_4 = mysqli_query($mysqli, "SELECT `isUpvote` FROM `votes` WHERE `user` = '$user' AND `post` = '$id_safe'") or die("Error " . mysqli_error($link));
 		$row_4 = mysqli_fetch_assoc($result_4);
 		if(!isset($row_4['isUpvote']) || $user == 0) {
 			$hw["voteStatus"] = "never";
-        } else if ($row_4['isUpvote'] == "1") {
-        	$hw["voteStatus"] = "upvoted";
-		} else {
+		} else if ($row_4['isUpvote'] == "1") {
+				$hw["voteStatus"] = "upvoted";
+			} else {
 			$hw["voteStatus"] = "downvoted";
 		}
-		
 
+
+		$hw["cost"] = $this->getPrice($id);
 		return $hw;
 	}
 
@@ -142,7 +158,7 @@ class Whack {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$q_safe = mysqli_real_escape_string($mysqli,$q);
 		$query = "SELECT `id`,`title`,`description` FROM `submissions` WHERE `title` LIKE '%$q_safe%' OR `description` LIKE '%$q_safe%'";
-		$result = mysqli_query($mysqli, $query);
+		$result = mysqli_query($mysqli, $query) or die("Error " . mysqli_error($link));
 		if (!$result) return false;
 		if (mysqli_num_rows($result) == 0) {
 			return false;
@@ -153,6 +169,24 @@ class Whack {
 		}
 		return $results;
 	}
+	function getProfile($user) {
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
+		$query = "SELECT `id`,`username`,`email` FROM `users` WHERE `id` = '$user'";
+		$result = mysqli_query($mysqli, $query) or die("Error " . mysqli_error($link));
+		$array = mysqli_fetch_assoc($result);
+
+
+		$query_2 = "SELECT i.id,i.title, COALESCE(SUM(CASE WHEN a.isUpvote THEN 1 ELSE -1 END),0) AS rating FROM submissions AS i LEFT JOIN votes AS a ON i.id = a.post WHERE i.user = '$user' GROUP BY i.id";
+		$result_2 = mysqli_query($mysqli, $query_2) or die("Error " . mysqli_error($link));
+		$posts = array();
+		while($post = mysqli_fetch_assoc($result_2)) {
+			$posts[] = $post;
+		}
+		$array['posts'] = $posts;
+
+		return $array;
+	}
+
 
 	function getProfileID() {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
@@ -161,13 +195,14 @@ class Whack {
 		}
 		$sid = mysqli_real_escape_string($mysqli,$_COOKIE['sid']);
 		$query = "SELECT `id` FROM `sessions` WHERE `sid` = '$sid'";
-		$result = mysqli_query($mysqli, $query);
+		$result = mysqli_query($mysqli, $query) or die("Error " . mysqli_error($link));
 		if (!$result) return false;
 		$row = mysqli_fetch_assoc($result);
 		return $row['id'];
 	}
 
-	function availableCreditsCount() {
-		return 0;
+
+	function creditsRemaining($user) {
+		return 5;
 	}
 }

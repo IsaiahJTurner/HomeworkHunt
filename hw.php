@@ -5,19 +5,20 @@ require_once("functions.php");
 $whack = new Whack();
 $user_id = $whack->getProfileID();
 $hw = $whack->homework($hwID, $user_id);
+$hasPurchased = $whack->hasPurchased($user_id, $hwID);
 if ($hw == false) die("Homework not found");
 function formatBytes($bytes, $precision = 2) {
-    $units = array('B', 'KB', 'MB', 'GB', 'TB');
+	$units = array('B', 'KB', 'MB', 'GB', 'TB');
 
-    $bytes = max($bytes, 0);
-    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
-    $pow = min($pow, count($units) - 1);
+	$bytes = max($bytes, 0);
+	$pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+	$pow = min($pow, count($units) - 1);
 
-    // Uncomment one of the following alternatives
-    // $bytes /= pow(1024, $pow);
-    // $bytes /= (1 << (10 * $pow));
+	// Uncomment one of the following alternatives
+	// $bytes /= pow(1024, $pow);
+	// $bytes /= (1 << (10 * $pow));
 
-    return round($bytes, $precision) . ' ' . $units[$pow];
+	return round($bytes, $precision) . ' ' . $units[$pow];
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +32,7 @@ function formatBytes($bytes, $precision = 2) {
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
 
-    <title>Homework Hunt</title>
+    <title><?php echo(htmlspecialchars($hw['title'])); ?></title>
     <link rel="Shortcut Icon" type="image/ico" href="imgs/ios/icon157x157.png">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon157x157.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon157x157.png">
@@ -49,6 +50,7 @@ $(document).ready(function () {
      if ($("[rel=tooltip]").length) {
      $("[rel=tooltip]").tooltip();
      }
+     $("#download").tooltip();
     });
     </script>
     <script src="/js/bootstrap.js" type="text/javascript">
@@ -75,27 +77,27 @@ var _paq = _paq || [];
 
     <div class="container">
         <div class="col-lg-8 col-lg-push-2 col-md-10 col-md-push-1">
-            <h2><?php echo($hw['title']); ?></h2>
+            <h2><?php echo(htmlspecialchars($hw['title'])); ?></h2>
 <br>
-           <pre><?php echo($hw['description']); ?></pre>
+           <pre><?php echo(htmlspecialchars($hw['description'])); ?></pre>
 <br>
             <div class="row">
                 <div class="col-sm-3 col-xs-6">
-                    <?php echo(strtoupper(pathinfo($hw['file'], PATHINFO_EXTENSION))); ?> File
+                    <?php echo(htmlspecialchars(strtoupper(pathinfo($hw['file'], PATHINFO_EXTENSION)))); ?> File
                 </div>
 
                 <div class="col-sm-3 col-xs-6">
                     <?php
-                    echo(formatBytes($hw['size'], 2));
-                    ?>
+echo(formatBytes($hw['size'], 2));
+?>
                 </div>
 
                 <div class="col-sm-3 col-xs-6">
-                    1 Credit
+                    <?php echo($hw['cost']); ?> Credit(s)
                 </div>
 
                 <div class="col-sm-3 col-xs-6">
-                    By <?php echo($hw['by']); ?> <?php if ($hw['trusted']) { ?><a href="#" rel="tooltip" title="Trusted User"><i class="fa fa-bullseye"><?php ?></i></a><?php } ?>
+                    By <?php echo(htmlspecialchars($hw['by'])); ?> <?php if ($hw['trusted']) { ?><a href="#" rel="tooltip" title="Trusted User"><i class="fa fa-bullseye"><?php ?></i></a><?php } ?>
                 </div>
             </div>
             <hr>
@@ -107,11 +109,11 @@ var _paq = _paq || [];
 
             <div class="row">
                 <div class="col-xs-6">
-                    <a id="upvote" class="btn btn-sm btn-default<?php if ($hw['voteStatus'] == "upvoted") echo " btn-primary"; ?>"><i class="fa fa-thumbs-up"><?php ?></i></a>&nbsp;&nbsp;<span id="rating"><?php echo($hw['rating']); ?></span>&nbsp;&nbsp;<a id="downvote" class="btn btn-sm btn-default<?php if ($hw['voteStatus'] == "downvoted") echo " btn-primary";?>"><i class="fa fa-thumbs-down"><?php ?></i></a>
+                    <?php if ($hasPurchased) { ?><a id="upvote" class="btn btn-sm btn-default<?php if ($hw['voteStatus'] == "upvoted") echo " btn-primary"; ?>"><i class="fa fa-thumbs-up"><?php ?></i></a>&nbsp;&nbsp;<?php } else { echo("Quality Rating:"); } ?><span id="rating"><?php echo($hw['rating']); ?></span><?php if ($hasPurchased) { ?>&nbsp;&nbsp;<a id="downvote" class="btn btn-sm btn-default<?php if ($hw['voteStatus'] == "downvoted") echo " btn-primary";?>"><i class="fa fa-thumbs-down"><?php ?></i></a><?php } ?>
                 </div>
 
                 <div class="col-xs-6 text-right">
-                            <input type="hidden" id="postid" name="id" value="<?php echo($hw['id']); ?>"> <a class="btn btn-primary" style="width:140px; margin-bottom: 10px;" id="download">Download</a>
+                            <input type="hidden" id="postid" name="id" value="<?php echo($hw['id']); ?>"> <a class="btn btn-primary" style="width:140px; margin-bottom: 10px;" id="download" data-toggle="tooltip" title="Download and spend <?php echo($hw['cost']); ?> credits. Earn more by sharing your homework.">Download</a>
                         </form>
                     </form>
                 </div>

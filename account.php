@@ -1,10 +1,12 @@
 <?php
 require_once("functions.php");
 $whack = new Whack();
-if (!$whack->getProfileID()) {
+$user_id = $whack->getProfileID();
+if (!$user_id) {
     header("Location: /register");
     die("You need to login to access your account.");
 }
+$profile = $whack->getProfile($user_id);
 ?>
 <!DOCTYPE html>
 
@@ -17,7 +19,7 @@ if (!$whack->getProfileID()) {
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
 
-    <title>Homework Hunt</title>
+    <title>My Account</title>
     <link rel="Shortcut Icon" type="image/ico" href="imgs/ios/icon157x157.png">
     <link rel="apple-touch-icon" sizes="57x57" href="/img/ios/icon157x157.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/img/ios/icon157x157.png">
@@ -51,12 +53,16 @@ if (!$whack->getProfileID()) {
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-3">
-                <h4 class="text-center">Import From Cloud</h4>
-
+            <div class="col-md-3">
+                <h4 class="text-center">Hello, <?php echo(htmlspecialchars($profile['username'])); ?></h4>
+				<h5 class="text-center"><?php echo $whack->creditsRemaining($user_id); ?> Credits Remaining</h5>
                 <div class="row text-center">
-                    <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" data-target=".donate">Google Drive</a><br>
-                    <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" data-target=".donate">Dropbox</a> <a data-toggle="modal" href="#" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" data-target=".donate">One Drive</a>
+                <p>We hope you are enjoying Homework Hunt. If you are having any troubles, feel free to contact us using the buttons below.</p>
+                 <div class="row">
+                 <div class="col-xs-6 text-right">
+                    <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Live Chat</a><br></div><div class="col-xs-6 text-left">
+                    <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Email Us</a>
+                 </div></div>
                 </div>
             </div>
 
@@ -76,47 +82,28 @@ if (!$whack->getProfileID()) {
                 </div>
             </div>
 
-            <div class="col-sm-9">
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">Direct File Upload</h4>
-                        </div>
-
-                        <div id="form" class="panel-collapse collapse in">
-                            <form method="post" action="/api/share" enctype="multipart/form-data">
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label for="title">Assignment Title</label> <input type="text" class="form-control" id="title" placeholder="Vocabulary Workshop Answer Key All Units: Level D" name="title">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="description">Description</label> 
-                                        <textarea type="text" class="form-control" id="description" placeholder="Most of these answers should be rite but I recommend checking them." name="description">
-</textarea>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <div style="position:relative;">
-                                                    <a class='btn btn-default' href='javascript:;'>Select File... <input type="file" name="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
-	                                                    
-                                                    </a> &nbsp; <span class='label label-primary' id="upload-file-info"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xs-6 text-right">
-                                                <input type="submit" class="btn btn-primary" style="width:160px; margin-bottom: 10px;" value="Share Answers">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="col-md-9">
+<div class="table-responsive">
+<table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Rating</th>
+          <th>Downloads</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+      <?php
+      
+       foreach ($profile['posts'] as $post) {
+       echo("<tr onclick='location.href=\"/hw/".$post['id']."\"'><td>".$post['rating']."</td>");
+       echo("<td>".strval(0)."</td>");
+       echo("<td>".htmlspecialchars($post['title'])."</td></tr>");
+	   }
+      
+      ?>
+      </tbody>
+    </table></div></div>
         </div>
     </div>
     <hr>

@@ -13,7 +13,7 @@ $whack = new Whack();
                     <?php  ?>
 
                     <form action="<?php if(isset($searchPage) && $searchPage = true) echo  "#"; else echo "/search"; ?>" method="get" style="display: inline;">
-                        <input type="search" name="q" value="<?php if(isset($searchPage) && $searchPage = true) { echo htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8'); } ?>" class="search-header" placeholder="Search" id="search"><input type="submit" value="GO" class="submit">
+                        <input type="search" name="q" value="<?php if(isset($searchPage) && $searchPage = true) { echo htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8'); } ?>" class="search-header" placeholder="Search" <?php if(isset($searchPage) && $searchPage = true) { echo ('id="search"'); } ?>><input type="submit" value="GO" class="submit">
                     </form>
                 </div>
 
@@ -22,7 +22,7 @@ $whack = new Whack();
                         <ul>
                             <?php if ($whack->getProfileID()) { ?><!-- Link or button to toggle dropdown -->
 
-                            <li><a href="/account"><?php echo $whack->availableCreditsCount(); ?> Credits</a></li><!-- <li><a tabindex="-1" href="/buy">Buy Additional Credits</a></li>-->
+                            <li><a href="/account">Account</a></li><!-- <li><a tabindex="-1" href="/buy">Buy Additional Credits</a></li>-->
 
                             <li><a href="/share">Share</a></li>
                             

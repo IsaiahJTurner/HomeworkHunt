@@ -184,7 +184,9 @@ header a {
 .navigation {
 	height:44px;
 }
-
+.table-hover tbody tr:hover {
+	cursor: pointer;
+}
 @media screen and (max-width: 768px) {
 	/*.submit {
 				font-size: 15px;
