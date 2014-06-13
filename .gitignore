@@ -2,3 +2,4 @@ analytics/tmp/*
 config.php
 vendor/*
 analytics/vendor/*
+analytics/config/config.ini.php
