@@ -58,9 +58,9 @@ $profile = $whack->getProfile($user_id);
 				<h5 class="text-center"><?php echo $whack->creditsRemaining($user_id); ?> Credits Remaining</h5>
                 <div class="row text-center">
                 <p>We hope you are enjoying Homework Hunt. If you are having any troubles, feel free to contact us using the buttons below.</p>
-                 <div class="row">
-                 <div class="col-xs-6 text-right">
-                    <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Live Chat</a><br></div><div class="col-xs-6 text-left">
+                 <div class="row contact">
+                 <div class="col-xs-6 text-left">
+                    <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Live Chat</a><br></div><div class="col-xs-6 text-right">
                     <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Email Us</a>
                  </div></div>Not <?php echo(htmlspecialchars($profile['username'])); ?>? <a href="/api/logout">Logout</a>.
                 </div>

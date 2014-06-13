@@ -51,7 +51,7 @@
                 <img src="img/logo-light.png" width="80%" style="margin-left:10%; margin-bottom:15px;" class="img-responsive">
             </div>
             <div class="row text-center">
-                            <input type="text" autofocus class="search" name="q" placeholder="Search any worksheet, essay, workbook, or other assignment!" autocomplete="off">
+                            <input type="text" autofocus class="search" name="q" placeholder="Search homework..." autocomplete="off">
                             <input type="submit" class="submit" value="GO">
             </div>
         </div>

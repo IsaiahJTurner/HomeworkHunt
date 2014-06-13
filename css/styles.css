@@ -5,10 +5,12 @@ header {
 	background:#17C3B9;
 	width:100%;
 }
+
 #results em {
-	font-style: normal;
-	font-weight: bolder;
+	font-style:normal;
+	font-weight:bolder;
 }
+
 .main {
 	background:#17C3B9;
 	padding:100px 0;
@@ -18,11 +20,13 @@ table {
 	border:0;
 	width:100%;
 }
+
 #rating {
-	min-width: 37px;
-display: inline-block;
-text-align: center;
+	min-width:37px;
+	display:inline-block;
+	text-align:center;
 }
+
 header img {
 	padding-top:10px;
 	height:35px;
@@ -184,24 +188,45 @@ header a {
 .navigation {
 	height:44px;
 }
+
 .table-hover tbody tr:hover {
-	cursor: pointer;
+	cursor:pointer;
+}
+
+.row {
+	margin-left:0;
+	margin-right:0;
+}
+.no-pointer {
+	cursor: default;
+}
+.contact .col-xs-6 {
+	padding-left: 0;
+padding-right: 0;
 }
 @media screen and (max-width: 768px) {
-	/*.submit {
-				font-size: 15px;
-				left: 27px;
-				padding: 4px;
-			}
-			.search {
-				padding: 5px 45px 6px 15px;
-			}*/
+	.submit {
+		font-size:18px;
+		left:18px;
+		padding:9px;
+	}
+	
+	.search {
+		padding:5px 45px 6px 15px;
+	}
+	
 	.status {
 		margin-top:75px;
 	}
 	
 	header ul {
 		text-align:center;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.search {
+		width:80%;
 	}
 }
 

@@ -96,7 +96,7 @@ echo(formatBytes($hw['size'], 2));
                 </div>
 
                 <div class="col-sm-3 col-xs-6">
-                    By <?php echo(htmlspecialchars($hw['by'])); ?> <?php if ($hw['trusted']) { ?><a href="#" rel="tooltip" title="Trusted User"><i class="fa fa-bullseye"><?php ?></i></a><?php } ?>
+                    By <?php echo(htmlspecialchars($hw['by'])); ?> <?php if ($hw['trusted']) { ?><a href="#" rel="tooltip" class="no-pointer" title="Trusted User"><i class="fa fa-bullseye"><?php ?></i></a><?php } ?>
                 </div>
             </div>
             <hr>

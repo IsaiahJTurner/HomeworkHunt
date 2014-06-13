@@ -28,6 +28,42 @@ if (!$whack->getProfileID()) {
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
     <script src="/js/bootstrap.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=loadPicker"></script>
+    <script type="text/javascript">
+
+    // Use the Google API Loader script to load the google.picker script.
+    function loadPicker() {
+      gapi.load('picker', {'callback': createPicker});
+    }
+
+    // Use your own API developer key.
+    var developerKey = 'AIzaSyBV6MeANy_ZaLB2f2c-XKCMA7hIu2Fy744';
+
+    // Create and render a Picker object for searching images.
+    function createPicker() {
+      var view = new google.picker.View(google.picker.ViewId.DOCS);
+      view.setMimeTypes("image/png,image/jpeg,image/jpg");
+      var picker = new google.picker.PickerBuilder()
+          .enableFeature(google.picker.Feature.NAV_HIDDEN)
+          .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+          .setAppId(YOUR_APP_ID)
+          .setOAuthToken(AUTH_TOKEN)
+          .addView(view)
+          .addView(new google.picker.DocsUploadView())
+          .setDeveloperKey(developerKey)
+          .setCallback(pickerCallback)
+          .build();
+       picker.setVisible(true);
+    }
+
+    // A simple callback implementation.
+    function pickerCallback(data) {
+      if (data.action == google.picker.Action.PICKED) {
+        var fileId = data.docs[0].id;
+        alert('The user selected: ' + fileId);
+      }
+    }
+    </script>
 </script>
 <!-- Piwik -->
 <script type="text/javascript">
@@ -100,7 +136,7 @@ if (!$whack->getProfileID()) {
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <div style="position:relative;">
-                                                    <a class='btn btn-default' href='javascript:;'>Select File... <input type="file" name="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
+                                                    <a class='btn btn-default' href='javascript:;'>Select File... <input type="file" name="file" style='position:absolute;height: 35px;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
 	                                                    
                                                     </a> &nbsp; <span class='label label-primary' id="upload-file-info"></span>
                                                 </div>
