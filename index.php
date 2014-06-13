@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Homework Hunt, hw hunt, answers, homework, essays, papers, projects, hw">
     <meta name="description" content="Find answers to any class assignment shared by users like you! Fuel the community, upload your answers today! It's free!">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
 

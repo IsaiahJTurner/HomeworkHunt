@@ -60,11 +60,6 @@ $(document).ready(function() {
 		$(this).addClass('btn-danger');
 		$(this).css("background-color", "#d2322d");
 	});
-	
-	
-	
-	
-	
 	$('#downvote').hover(
 
 	function() {
@@ -76,12 +71,6 @@ $(document).ready(function() {
 			$(this).removeClass('btn-danger');
 		}
 	});
-	
-	
-	
-	
-	
-	
 	$('#download').click(function(evt) {
 		var hw = $("#postid").val();
 		$.ajax({
@@ -109,18 +98,15 @@ $(document).ready(function() {
 			error: function(jqXHR, textStatus, errorThrown) {}
 		});
 	});
-	
-	
-	
-	
-	
-	
 	var timer;
+	var lastQuery;
 	$("#search").bind("change paste keyup", function() {
-		$('#status').html("Loading results...");
+		var val = $(this).val();
+		if (lastQuery == val) {
+			return;
+		}
 		clearTimeout(timer);
 		var ms = 750; // milliseconds
-		var val = $(this).val();
 		if (val == "") {
 			location.get = "";
 			$(document).attr('title', "Search");
@@ -129,17 +115,21 @@ $(document).ready(function() {
 			$(document).attr('title', val);
 		}
 		timer = setTimeout(function() {
-			if (val.length > 2) {
+			if (lastQuery == val) {
+				return;
+			} else if (val.length > 2) {
+				$('#status').html("Loading results...");
 				updateSearchResults(val);
 			} else {
 				$('#status').html("No matching results found.");
 			}
 		}, ms);
 	});
-	$( "#search" ).trigger( "change" );
+	$("#search").trigger("change");
 });
 
 function updateSearchResults(q) {
+	lastQuery = q;
 	var optionsArray = {
 		'query': q,
 		'hitsPerPage': 2,
@@ -164,12 +154,12 @@ function updateSearchResults(q) {
 			if (data['nbHits'] == 0) {
 				$('#status').html("No matching results found.");
 			} else {
-				$('#status').html(data['nbHits'] + " results found.");
+				$('#status').html(data['nbHits'] + " result(s) found.");
 				var html;
-				for (var i=0; i<data['hits'].length; i++) {
-				var hit = data['hits'][i];
-				console.log(hit);
-					html += "<tr><td><a href='/hw/'" + hit['objectID'] + ">" + hit['title'] + "</a><p>" + hit['_snippetResult']['content']['value'] + "</p></td></tr>";
+				for (var i = 0; i < data['hits'].length; i++) {
+					var hit = data['hits'][i];
+					console.log(hit);
+					html += "<tr><td><a href='/hw/" + hit['objectID'] + "'>" + hit['title'] + "</a><p>" + hit['_snippetResult']['content']['value'] + "</p></td></tr>";
 				}
 				$('#results').html(html);
 			}

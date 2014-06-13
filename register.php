@@ -67,7 +67,7 @@ if ($whack->getProfileID()) {
   </div>
   <div class="checkbox">
     <label>
-      <input type="checkbox" name="terms"> By checking this box, you accept to our <a href="/terms">Terms & Conditions</a>.
+      <input type="checkbox" name="terms"> I agree to Homework Hunt's <a href="/terms">Terms</a>.
     </label>
   </div>
             </div>
