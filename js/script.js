@@ -3,7 +3,6 @@ $(document).ready(function() {
 	upvoteActive = false;
 	if ($('#upvote').hasClass("btn-primary")) {
 		$('#upvote').css("background-color", "#17C3B9");
-
 		upvoteActive = true;
 	}
 	if ($('#downvote').hasClass("btn-primary")) {
@@ -118,6 +117,9 @@ $(document).ready(function() {
 				}
 				if (data['response']['code'] == 1) {
 					window.location.href = data['response']['message'];
+					setTimeout(function() {
+						window.location.reload();
+					}, 1000);
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {}

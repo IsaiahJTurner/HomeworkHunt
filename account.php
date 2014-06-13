@@ -97,7 +97,7 @@ $profile = $whack->getProfile($user_id);
       
        foreach ($profile['posts'] as $post) {
        echo("<tr onclick='location.href=\"/hw/".$post['id']."\"'><td>".$post['rating']."</td>");
-       echo("<td>".strval(0)."</td>");
+       echo("<td>".$post['downloads']."</td>");
        echo("<td>".htmlspecialchars($post['title'])."</td></tr>");
 	   }
       

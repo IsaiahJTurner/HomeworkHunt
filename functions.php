@@ -81,7 +81,14 @@ class Whack {
 	}
 
 	function hasPurchased($user, $item) {
-		return false;
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
+		$query = "SELECT 1 FROM `purchases` WHERE `user` = '$user' AND `item` = '$item'";
+		$result = mysqli_query($mysqli, $query);
+		if (mysqli_num_rows($result) == 0) {
+			return false;
+		} else {
+			return 1;
+		}
 	}
 	function purchase($user, $item, $cost) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
@@ -176,7 +183,7 @@ class Whack {
 		$array = mysqli_fetch_assoc($result);
 
 
-		$query_2 = "SELECT i.id,i.title, COALESCE(SUM(CASE WHEN a.isUpvote THEN 1 ELSE -1 END),0) AS rating FROM submissions AS i LEFT JOIN votes AS a ON i.id = a.post WHERE i.user = '$user' GROUP BY i.id";
+		$query_2 = "SELECT a.id,a.title,COALESCE(SUM(CASE WHEN b.isUpvote THEN 1 ELSE -1 END),0) AS rating,COALESCE(SUM(c.`downloads`),0) AS downloads FROM submissions AS a LEFT JOIN votes AS b ON b.post = a.id LEFT JOIN purchases AS c ON c.item = a.id WHERE a.`user` = '$user' GROUP BY a.id";
 		$result_2 = mysqli_query($mysqli, $query_2) or die("Error " . mysqli_error($link));
 		$posts = array();
 		while($post = mysqli_fetch_assoc($result_2)) {
