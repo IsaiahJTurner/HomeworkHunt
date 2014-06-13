@@ -62,23 +62,7 @@ $profile = $whack->getProfile($user_id);
                  <div class="col-xs-6 text-right">
                     <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Live Chat</a><br></div><div class="col-xs-6 text-left">
                     <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Email Us</a>
-                 </div></div>
-                </div>
-            </div>
-
-            <div class="modal fade donate" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-
-                            <h4 class="modal-title" id="mySmallModalLabel">Coming Soon</h4>
-                        </div>
-
-                        <div class="modal-body">
-                            The import feature is not available yet, please check back soon.
-                        </div>
-                    </div>
+                 </div></div>Not <?php echo(htmlspecialchars($profile['username'])); ?>? <a href="/api/logout">Logout</a>.
                 </div>
             </div>
 

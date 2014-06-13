@@ -109,8 +109,11 @@ $(document).ready(function() {
 						html: true,
 						title: "Login Required",
 						placement: 'top',
-						content: "Please click the button below to log in. You may then return to this page to download the file.<br><br><a style='width:100%' href='/login' class='btn btn-sm btn-primary' target='_blank'>Log in</a>"
+						content: "Please click the button below to log in. You may then return to this page to download the file.<br><br><a id='login' style='width:100%' href='/login' class='btn btn-sm btn-primary' target='_blank'>Log in</a>"
 					}).popover("show");
+					$('#login').click(function() {
+						$('#download').popover("hide");
+					});
 				}
 				if (data['response']['code'] == 3) {
 					alert("A download link could not be generated because this homework does not exist.");

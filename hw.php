@@ -50,7 +50,6 @@ $(document).ready(function () {
      if ($("[rel=tooltip]").length) {
      $("[rel=tooltip]").tooltip();
      }
-     $("#download").tooltip();
     });
     </script>
     <script src="/js/bootstrap.js" type="text/javascript">
@@ -113,7 +112,7 @@ echo(formatBytes($hw['size'], 2));
                 </div>
 
                 <div class="col-xs-6 text-right">
-                            <input type="hidden" id="postid" name="id" value="<?php echo($hw['id']); ?>"> <a class="btn btn-primary" style="width:140px; margin-bottom: 10px;" id="download" data-toggle="tooltip" title="Download and spend <?php echo($hw['cost']); ?> credits. Earn more by sharing your homework.">Download</a>
+                            <input type="hidden" id="postid" name="id" value="<?php echo($hw['id']); ?>"> <a class="btn btn-primary" style="width:140px; margin-bottom: 10px;" id="download">Download</a>
                         </form>
                     </form>
                 </div>
