@@ -113,6 +113,8 @@ $(document).ready(function() {
 					}).popover("show");
 					$('#login').click(function() {
 						$('#download').popover("hide");
+						$('#download').popover("disable");
+						$(".popover").remove();
 					});
 				}
 				if (data['response']['code'] == 3) {
