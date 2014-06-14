@@ -9,6 +9,10 @@
 	position:absolute; top:50%; height: 160px;
 margin-top: -80px;padding-top: 0;width: 100%;
 }
+.form-inline .btn-lg {
+	color:#17C3B9;
+	line-height: 1.5;
+}
 h1,h2,h3,h4,h5,h6 {
 	font-family: "Lato", Helvetica, Arial, sans-serif;
 	font-weight: 300;
