@@ -69,11 +69,11 @@ var _paq = _paq || [];
     </script>
 </head>
 
-<body>
+<body><div id="wrapper">
+
     <noscript>
     <p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
     <?php include("includes/header.php"); ?>
-
     <div class="container">
         <div class="col-lg-8 col-lg-push-2 col-md-10 col-md-push-1">
             <h2><?php echo(htmlspecialchars($hw['title'])); ?></h2>
@@ -121,7 +121,9 @@ echo(formatBytes($hw['size'], 2));
             <p class="text-center" style="margin-top:15px;">Comments feature coming soon.</p>
         </div>
     </div>
-    <hr>
+            <div id="push"></div>
+
+    </div>
     <?php include("includes/footer.php"); ?>
 </body>
 </html>

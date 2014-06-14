@@ -3,7 +3,8 @@ require_once("functions.php");
 $whack = new Whack();
 $searchPage = true;
 if (!isset($_GET['q'])) $_GET['q'] = "";
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -20,40 +21,45 @@ if (!isset($_GET['q'])) $_GET['q'] = "";
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
-<script src="/js/script.js" type="text/javascript">
+    <script src="/js/script.js" type="text/javascript">
 </script>
     <script src="/js/bootstrap.js" type="text/javascript">
-</script>
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
+</script><!-- Piwik -->
+
+    <script type="text/javascript">
+var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
     var u=(("https:" == document.location.protocol) ? "https" : "http") + "://homeworkhunt.com/analytics/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
     _paq.push(['setSiteId', 1]);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
     g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="http://homeworkhunt.com/analytics/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
+    })();
+    </script><noscript>
+    <p><img src="http://homeworkhunt.com/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
 </head>
 
 <body>
-<?php include("includes/header.php"); ?>
-    <div class="container">
-    <div class="row">
-    <div class="col-lg-9 col-md-11">
-    <div id="status" class="status">Loading...</div>
-        <table>
-        <tbody id="results"></tbody>
-        </table>
-    </div>
-    </div>
-    </div>
-    <hr>
-    <?php include("includes/footer.php"); ?>
+    <div id="wrapper">
+        <?php include("includes/header.php"); ?>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-11">
+                    <div id="status" class="status">
+                        Loading...
+                    </div>
+
+                    <table>
+                        <tbody id="results"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="push"></div>
+    </div><?php include("includes/footer.php"); ?>
 </body>
 </html>

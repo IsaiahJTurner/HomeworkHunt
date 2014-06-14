@@ -26,9 +26,12 @@ if (!$whack->getProfileID()) {
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
-    <script src="/js/bootstrap.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=loadPicker"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
+</script>
+    <script src="/js/bootstrap.js" type="text/javascript">
+</script>
+    <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=loadPicker">
+</script>
     <script type="text/javascript">
 
     // Use the Google API Loader script to load the google.picker script.
@@ -63,104 +66,103 @@ if (!$whack->getProfileID()) {
         alert('The user selected: ' + fileId);
       }
     }
-    </script>
-</script>
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
+    </script><!-- Piwik -->
+
+    <script type="text/javascript">
+var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
     var u=(("https:" == document.location.protocol) ? "https" : "http") + "://localhost/analytics/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
     _paq.push(['setSiteId', 1]);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
     g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
+    })();
+    </script><noscript>
+    <p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
 </head>
 
 <body>
-    <?php include("includes/header.php"); ?>
+    <div id="wrapper">
+        <?php include("includes/header.php"); ?>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
-                <h4 class="text-center">Import From Cloud</h4>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4 class="text-center">Import From Cloud</h4>
 
-                <div class="row text-center">
-                    <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" data-target=".donate">Google Drive</a><br>
-                    <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" data-target=".donate">Dropbox</a> <a data-toggle="modal" href="#" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" data-target=".donate">One Drive</a>
+                    <div class="row text-center">
+                        <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" data-target=".donate">Google Drive</a><br>
+                        <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" data-target=".donate">Dropbox</a> <a data-toggle="modal" href="#" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" data-target=".donate">One Drive</a>
+                    </div>
+
+                    <h4 class="text-center">Supported File Types</h4>
+
+                    <p class="text-center">doc, docx, html, pages, txt, pdf, rtf, md, abw, djvu, lwp, odt, pages.zip, sdw, tex, wpd, wps, and zabw</p>
                 </div>
-                                <h4 class="text-center">Supported File Types</h4>
-                                
-<p class="text-center">doc, docx, html, pages, txt, pdf, rtf, md, abw, djvu, lwp, odt, pages.zip, sdw, tex, wpd, wps, and zabw</p>
-            </div>
 
-            <div class="modal fade donate" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <div class="modal fade donate" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-                            <h4 class="modal-title" id="mySmallModalLabel">Coming Soon</h4>
-                        </div>
+                                <h4 class="modal-title" id="mySmallModalLabel">Coming Soon</h4>
+                            </div>
 
-                        <div class="modal-body">
-                            The import feature is not available yet, please check back soon.
+                            <div class="modal-body">
+                                The import feature is not available yet, please check back soon.
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-sm-9">
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">Share Your Homework Answers</h4>
-                        </div>
+                <div class="col-sm-9">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Share Your Homework Answers</h4>
+                            </div>
 
-                        <div id="form" class="panel-collapse collapse in">
-                            <form method="post" action="/api/share" enctype="multipart/form-data">
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label for="title">Assignment Title</label> <input type="text" class="form-control" id="title" placeholder="Vocabulary Workshop Answer Key All Units: Level D" name="title">
-                                    </div>
+                            <div id="form" class="panel-collapse collapse in">
+                                <form method="post" action="/api/share" enctype="multipart/form-data">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label for="title">Assignment Title</label> <input type="text" class="form-control" id="title" placeholder="Vocabulary Workshop Answer Key All Units: Level D" name="title">
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="description">Description</label> 
-                                        <textarea type="text" class="form-control" id="description" placeholder="Most of these answers should be rite but I recommend checking them." name="description" rows="3">
+                                        <div class="form-group">
+                                            <label for="description">Description</label> 
+                                            <textarea type="text" class="form-control" id="description" placeholder="Most of these answers should be rite but I recommend checking them." name="description" rows="3">
 </textarea>
-                                    </div>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <div style="position:relative;">
-                                                    <a class='btn btn-default' href='javascript:;'>Select File... <input type="file" name="file" style='position:absolute;height: 35px;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'>
-	                                                    
-                                                    </a> &nbsp; <span class='label label-primary' id="upload-file-info"></span>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <div style="position:relative;">
+                                                        <a class='btn btn-default' href='javascript:;'>Select File... <input type="file" style='position:absolute;height: 35px;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'></a> &nbsp; <span class='label label-primary' id="upload-file-info"></span>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-xs-6 text-right">
-                                                <input type="submit" class="btn btn-primary" style="max-width: 160px;
+                                                <div class="col-xs-6 text-right">
+                                                    <input type="submit" class="btn btn-primary" style="max-width: 160px;
 margin-bottom: 10px;
 width: 100%;" value="Share">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <hr>
-    <?php include("includes/footer.php"); ?>
+
+        <div id="push"></div>
+    </div><?php include("includes/footer.php"); ?>
 </body>
 </html>

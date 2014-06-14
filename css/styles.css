@@ -1,4 +1,5 @@
-<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>header {
+<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+header {
 	position:fixed;
 	box-shadow:0 1px 1px #d9d9d9;
 	z-index:9999;
@@ -7,9 +8,9 @@
 }
 .fullHeight .container {
 	position:absolute; top:50%; height: 160px;
-margin-top: -80px;padding-top: 0;width: 100%;
+margin-top: -100px;padding-top: 0;width: 100%;
 }
-.form-inline .btn-lg {
+.dark .form-inline .btn-lg {
 	color:#17C3B9;
 	line-height: 1.5;
 }
@@ -17,8 +18,21 @@ h1,h2,h3,h4,h5,h6 {
 	font-family: "Lato", Helvetica, Arial, sans-serif;
 	font-weight: 300;
 }
+html, body {
+    height: 100%;
+}
 body {
 	font-family: 'Lato', sans-serif;
+background-color: #f7f7f7;
+}
+#wrapper {
+	min-height: 100%;
+	height: auto!important;
+	height: 100%;
+	margin: 0 auto -130px;
+}
+#push, footer {
+	height: 130px;
 }
 #results em {
 	font-style:normal;
@@ -40,12 +54,8 @@ color: white;
 	.dark a:hover {
 		text-decoration: none;
 	}
-	.whyUs .fa {
+	.big-icons .fa {
 		font-size: 50px;
-	}
-	.whyUs {
-		padding-bottom: 70px;
-
 	}
 table {
 	border:0;
@@ -90,17 +100,12 @@ header img {
 .row {
 	margin-bottom:15px;
 }
-
-.container {
-	padding-top:70px;
+footer, footer a {
+	color: #aaa;
+background:#2b2b2b;
 }
-
-footer {
-	margin-top:25px;
-}
-
-footer .container {
-	padding-top:0;
+footer a:hover {
+color: white;
 }
 
 .search {
@@ -155,8 +160,7 @@ header .submit {
 }
 
 header .row {
-	margin-bottom:5px;
-	margin-top:5px;
+	margin: 5px inherit;
 }
 
 button {
@@ -176,7 +180,7 @@ button {
 .fa-heart {
 	color:#17C3B9;
 }
-.form-control {
+.dark .form-control {
 	border: none;
 		color:#17C3B9;
 
@@ -188,6 +192,9 @@ button {
 	box-shadow:none;
 }
 
+header .navigation ul li a {
+	text-decoration: none;
+}
 header ul {
 	position:absolute;
 	margin-top:10px;
@@ -195,7 +202,6 @@ header ul {
 	text-align:right;
 	width:100%;
 	left:0;
-	left: 0;
 	padding-left: 0;
 }
 
@@ -205,8 +211,9 @@ header ul li {
 }
 
 header ul li a {
-	padding-left:5px;
-	padding-right:5px;
+	padding-left: 5px;
+	padding-right: 5px;
+
 }
 
 header ul li a:hover {
@@ -229,17 +236,32 @@ header a {
 .table-hover tbody tr:hover {
 	cursor:pointer;
 }
-
 .row {
 	margin-left:0;
-	margin-right:0;
+	margin-right: 0;
 }
 .no-pointer {
 	cursor: default;
 }
 .contact .col-xs-6 {
 	padding-left: 0;
-padding-right: 0;
+	padding-right: 0;
+}
+.container {
+	padding: 15px inherit;
+}
+.landing .container {
+	padding: 70px inherit;
+}
+footer .container {
+	padding: 15px inherit!important;
+}
+footer {
+		padding-top:25px;
+
+}
+header .container {
+	padding: 0px!important;
 }
 @media screen and (max-width: 768px) {
 	.submit {
@@ -259,6 +281,10 @@ padding-right: 0;
 	header ul {
 		text-align:center;
 	}
+	.form-inline {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
 }
 
 @media screen and (max-width: 991px) {
@@ -266,7 +292,14 @@ padding-right: 0;
 		width:80%;
 	}
 }
-
+@media screen and (min-width: 767px) {
+	.form-inline .form-group {
+		margin-top: 5px;
+	}
+	.form-inline button {
+		margin-top: 5px;
+	}
+}
 @media screen and (max-width: 768px),screen and (max-height: 320px) {
 	header {
 		position:relative;
@@ -274,9 +307,5 @@ padding-right: 0;
 	
 	.status {
 		margin-top:0;
-	}
-	
-	.container {
-		padding-top:15px;
 	}
 }

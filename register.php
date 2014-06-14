@@ -2,10 +2,11 @@
 require_once("functions.php");
 $whack = new Whack();
 if ($whack->getProfileID()) {
-	header("Location: /share");
-	die("You are already logged in.");
+    header("Location: /share");
+    die("You are already logged in.");
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -29,56 +30,56 @@ if ($whack->getProfileID()) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
     <script src="/js/bootstrap.js" type="text/javascript">
-</script>
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
+</script><!-- Piwik -->
+
+    <script type="text/javascript">
+var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
     var u=(("https:" == document.location.protocol) ? "https" : "http") + "://localhost/analytics/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
     _paq.push(['setSiteId', 1]);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
     g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
+    })();
+    </script><noscript>
+    <p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
 </head>
 
 <body>
-<?php include("includes/header.php"); ?>
-    <div class="container">
-    <form method="post" action="/api/register">
-        <div class="row">
-            <div class="col-md-6 col-md-push-3 col-sm-8 col-sm-push-2">
-                <div class="form-group">
-    <label for="username">Desired Username <a href="/login">Already have an account?</a></label>
-    <input type="text" class="form-control" id="username" name="username" placeholder="JohnDoe">
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="john.doe@example.com">
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="********">
-  </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" name="terms"> I agree to Homework Hunt's <a href="/legal">Terms</a>.
-    </label>
-  </div>
-            </div>
+    <div id="wrapper">
+        <?php include("includes/header.php"); ?>
+
+        <div class="container">
+            <form method="post" action="/api/register">
+                <div class="row">
+                    <div class="col-md-6 col-md-push-3 col-sm-8 col-sm-push-2">
+                        <div class="form-group">
+                            <label for="username">Desired Username <a href="/login">Already have an account?</a></label> <input type="text" class="form-control" id="username" name="username" placeholder="JohnDoe">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label> <input type="email" class="form-control" id="email" name="email" placeholder="john.doe@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label> <input type="password" class="form-control" id="password" name="password" placeholder="********">
+                        </div>
+
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="terms"> I agree to Homework Hunt's <a href="/legal">Terms</a>.</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-center">
+                    <input type="submit" value="Create an Account" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" id="submit">
+                </div>
+            </form>
         </div>
 
-        <div class="row text-center">
-            <input type="submit" value="Create an Account" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" id="submit">
-        </div>
-    </form>
-    </div>
-<hr>
-    <?php include("includes/footer.php"); ?>
+        <div id="push"></div>
+    </div><?php include("includes/footer.php"); ?>
 </body>
 </html>

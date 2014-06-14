@@ -2,10 +2,11 @@
 require_once("functions.php");
 $whack = new Whack();
 if ($whack->getProfileID()) {
-	header("Location: /share");
-	die("You are already logged in.");
+    header("Location: /share");
+    die("You are already logged in.");
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -28,46 +29,48 @@ if ($whack->getProfileID()) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
     <script src="/js/bootstrap.js" type="text/javascript">
-</script>
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
+</script><!-- Piwik -->
+
+    <script type="text/javascript">
+var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
     var u=(("https:" == document.location.protocol) ? "https" : "http") + "://localhost/analytics/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
     _paq.push(['setSiteId', 1]);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
     g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
+    })();
+    </script><noscript>
+    <p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
 </head>
 
 <body>
-<?php include("includes/header.php"); ?>
-    <div class="container">
-        <form method="post" action="/api/login">
-            <div class="row">
-                <div class="col-md-6 col-md-push-3 col-sm-8 col-sm-push-2">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Login <a href="/register">Need an account?</a></label> <input type="text" class="form-control" name="login" id="exampleInputEmail1" placeholder="Enter email">
-                    </div>
+    <div id="wrapper">
+        <?php include("includes/header.php"); ?>
 
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label> <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-                    <div class="text-center">
-					<input type="submit" value="Log in" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;">
+        <div class="container">
+            <form method="post" action="/api/login">
+                <div class="row">
+                    <div class="col-md-6 col-md-push-3 col-sm-8 col-sm-push-2">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Login <a href="/register">Need an account?</a></label> <input type="text" class="form-control" name="login" id="exampleInputEmail1" placeholder="Enter email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label> <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+
+                        <div class="text-center">
+                            <input type="submit" value="Log in" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;">
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
+        </div>
 
-        </form>
-    </div>
-<hr>
-    <?php include("includes/footer.php"); ?>
+        <div id="push"></div>
+    </div><?php include("includes/footer.php"); ?>
 </body>
 </html>

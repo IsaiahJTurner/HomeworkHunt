@@ -2,9 +2,10 @@
 require_once(__DIR__."/../functions.php");
 $whack = new Whack();
 ?>
-<header>
+<header class="dark">
         <div class="container" style="padding-top:0">
             <div class="row" style="width:100%;">
+            	<?php if(!isset($homepage) || $homepage = false) { ?>
                 <div class="col-md-2 col-sm-3">
                     <a href="/"><img src="/img/logo-light.png"></a>
                 </div>
@@ -16,8 +17,8 @@ $whack = new Whack();
                         <input type="search" name="q" value="<?php if(isset($searchPage) && $searchPage = true) { echo htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8'); } ?>" class="search-header" placeholder="Search" <?php if(isset($searchPage) && $searchPage = true) { echo ('id="search"'); } ?>><input type="submit" value="GO" class="submit">
                     </form>
                 </div>
-
-                <div class="col-sm-3 col-lg-push-3 text-center">
+				<?php } ?>
+                <div class="col-sm-3 <?php if(isset($homepage) && $homepage = true) echo "col-sm-push-9"; else echo "col-lg-push-3"; ?> text-center">
                     <div class="navigation">
                         <ul>
                             <?php if ($whack->getProfileID()) { ?><!-- Link or button to toggle dropdown -->

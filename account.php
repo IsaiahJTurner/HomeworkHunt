@@ -3,8 +3,8 @@ require_once("functions.php");
 $whack = new Whack();
 $user_id = $whack->getProfileID();
 if (!$user_id) {
-    header("Location: /register");
-    die("You need to login to access your account.");
+	header("Location: /register");
+	die("You need to login to access your account.");
 }
 $profile = $whack->getProfile($user_id);
 ?>
@@ -28,69 +28,83 @@ $profile = $whack->getProfile($user_id);
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
-    <script src="/js/bootstrap.js" type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
 </script>
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
+    <script src="/js/bootstrap.js" type="text/javascript">
+</script><!-- Piwik -->
+
+    <script type="text/javascript">
+var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
     var u=(("https:" == document.location.protocol) ? "https" : "http") + "://localhost/analytics/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
     _paq.push(['setSiteId', 1]);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
     g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
+    })();
+    </script><noscript>
+    <p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
 </head>
 
 <body>
-    <?php include("includes/header.php"); ?>
+    <div id="wrapper">
+        <?php include("includes/header.php"); ?>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <h4 class="text-center">Hello, <?php echo(htmlspecialchars($profile['username'])); ?></h4>
-				<h5 class="text-center"><?php echo $whack->creditsRemaining($user_id); ?> Credits Remaining</h5>
-                <div class="row text-center">
-                <p>We hope you are enjoying Homework Hunt. If you are having any troubles, feel free to contact us using the buttons below.</p>
-                 <div class="row contact">
-                 <div class="col-xs-6 text-left">
-                    <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Live Chat</a><br></div><div class="col-xs-6 text-right">
-                    <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Email Us</a>
-                 </div></div>Not <?php echo(htmlspecialchars($profile['username'])); ?>? <a href="/api/logout">Logout</a>.
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h4 class="text-center">Hello, <?php echo(htmlspecialchars($profile['username'])); ?></h4>
+
+                    <h5 class="text-center"><?php echo $whack->creditsRemaining($user_id); ?> Credits Remaining</h5>
+
+                    <div class="row text-center">
+                        <p>We hope you are enjoying Homework Hunt. If you are having any troubles, feel free to contact us using the buttons below.</p>
+
+                        <div class="row contact">
+                            <div class="col-xs-6 text-left">
+                                <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Live Chat</a><br>
+                            </div>
+
+                            <div class="col-xs-6 text-right">
+                                <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Email Us</a>
+                            </div>
+                        </div>Not <?php echo(htmlspecialchars($profile['username'])); ?>? <a href="/api/logout">Logout</a>.
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Rating</th>
+
+                                    <th>Downloads</th>
+
+                                    <th>Title</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php
+
+foreach ($profile['posts'] as $post) {
+	echo("<tr onclick='location.href=\"/hw/".$post['id']."\"'><td>".$post['rating']."</td>");
+	echo("<td>".$post['downloads']."</td>");
+	echo("<td>".htmlspecialchars($post['title'])."</td></tr>");
+}
+
+?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-md-9">
-<div class="table-responsive">
-<table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Rating</th>
-          <th>Downloads</th>
-          <th>Title</th>
-        </tr>
-      </thead>
-      <tbody>
-      <?php
-      
-       foreach ($profile['posts'] as $post) {
-       echo("<tr onclick='location.href=\"/hw/".$post['id']."\"'><td>".$post['rating']."</td>");
-       echo("<td>".$post['downloads']."</td>");
-       echo("<td>".htmlspecialchars($post['title'])."</td></tr>");
-	   }
-      
-      ?>
-      </tbody>
-    </table></div></div>
         </div>
-    </div>
-    <hr>
-    <?php include("includes/footer.php"); ?>
+
+        <div id="push"></div>
+    </div><?php include("includes/footer.php"); ?>
 </body>
 </html>
