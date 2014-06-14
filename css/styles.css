@@ -1,11 +1,21 @@
-header {
+<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>header {
 	position:fixed;
 	box-shadow:0 1px 1px #d9d9d9;
 	z-index:9999;
 	background:#17C3B9;
 	width:100%;
 }
-
+.fullHeight .container {
+	position:absolute; top:50%; height: 160px;
+margin-top: -80px;padding-top: 0;width: 100%;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-family: "Lato", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+}
+body {
+	font-family: 'Lato', sans-serif;
+}
 #results em {
 	font-style:normal;
 	font-weight:bolder;
@@ -15,7 +25,24 @@ header {
 	background:#17C3B9;
 	padding:100px 0;
 }
+.dark {
+color: white;
+	background:#17C3B9;
+	}
+	.dark a {
+		color: white;
+		text-decoration: underline;
+	}
+	.dark a:hover {
+		text-decoration: none;
+	}
+	.whyUs .fa {
+		font-size: 50px;
+	}
+	.whyUs {
+		padding-bottom: 70px;
 
+	}
 table {
 	border:0;
 	width:100%;
@@ -145,7 +172,11 @@ button {
 .fa-heart {
 	color:#17C3B9;
 }
+.form-control {
+	border: none;
+		color:#17C3B9;
 
+}
 .form-control:focus {
 	border-color:#17C3B9;
 	outline:0;
@@ -160,6 +191,8 @@ header ul {
 	text-align:right;
 	width:100%;
 	left:0;
+	left: 0;
+	padding-left: 0;
 }
 
 header ul li {

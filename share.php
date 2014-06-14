@@ -94,6 +94,9 @@ if (!$whack->getProfileID()) {
                     <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" data-target=".donate">Google Drive</a><br>
                     <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" data-target=".donate">Dropbox</a> <a data-toggle="modal" href="#" class="btn btn-primary text-center" style="width:160px; margin-bottom: 10px;" data-target=".donate">One Drive</a>
                 </div>
+                                <h4 class="text-center">Supported File Types</h4>
+                                
+<p class="text-center">doc, docx, html, pages, txt, pdf, rtf, md, abw, djvu, lwp, odt, pages.zip, sdw, tex, wpd, wps, and zabw</p>
             </div>
 
             <div class="modal fade donate" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -116,7 +119,7 @@ if (!$whack->getProfileID()) {
                 <div class="panel-group" id="accordion">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Direct File Upload</h4>
+                            <h4 class="panel-title">Share Your Homework Answers</h4>
                         </div>
 
                         <div id="form" class="panel-collapse collapse in">
@@ -128,7 +131,7 @@ if (!$whack->getProfileID()) {
 
                                     <div class="form-group">
                                         <label for="description">Description</label> 
-                                        <textarea type="text" class="form-control" id="description" placeholder="Most of these answers should be rite but I recommend checking them." name="description">
+                                        <textarea type="text" class="form-control" id="description" placeholder="Most of these answers should be rite but I recommend checking them." name="description" rows="3">
 </textarea>
                                     </div>
 
@@ -143,7 +146,9 @@ if (!$whack->getProfileID()) {
                                             </div>
 
                                             <div class="col-xs-6 text-right">
-                                                <input type="submit" class="btn btn-primary" style="width:160px; margin-bottom: 10px;" value="Share Answers">
+                                                <input type="submit" class="btn btn-primary" style="max-width: 160px;
+margin-bottom: 10px;
+width: 100%;" value="Share">
                                             </div>
                                         </div>
                                     </div>

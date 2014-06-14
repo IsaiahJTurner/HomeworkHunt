@@ -159,6 +159,12 @@ $(document).ready(function() {
 	});
 	$("#search").trigger("change");
 });
+$(document).ready(updateFullHeightSections);
+$(window).on('resize', updateFullHeightSections);
+
+function updateFullHeightSections() {
+	$('.fullHeight').css('min-height', $(window).height() + 'px');
+}
 
 function updateSearchResults(q) {
 	lastQuery = q;

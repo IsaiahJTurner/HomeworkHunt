@@ -7,7 +7,7 @@ require 'vendor/autoload.php';
 use Aws\S3\S3Client;
 
 
-require("config.php");
+require_once("config.php");
 class Whack {
 
 	// Authenticates a user.

@@ -67,7 +67,7 @@ if ($whack->getProfileID()) {
   </div>
   <div class="checkbox">
     <label>
-      <input type="checkbox" name="terms"> I agree to Homework Hunt's <a href="/terms">Terms</a>.
+      <input type="checkbox" name="terms"> I agree to Homework Hunt's <a href="/legal">Terms</a>.
     </label>
   </div>
             </div>
