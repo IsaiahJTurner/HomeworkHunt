@@ -44,8 +44,33 @@ var _paq = _paq || [];
 <body>
     <div id="wrapper">
         <?php include("includes/header.php"); ?>
+		<div class="container-fluid light">
+		<div class="container">
+		<div class="row">
+                <div class="col-md-3">
+                    <h3>Filter by type:</h3>
+                </div>
 
-        <div class="container">
+                <div class="col-md-6">
+                    <div class="cd-dropdown">
+                        <span style="z-index: 1004;"><span class="filter">All types ( 5 )</span></span> <input type="hidden" name="cd-dropdown" value="all">
+
+                        <ul style="height: auto;">
+                            <li data-value="all" style="transition: all 300ms ease; -webkit-transition: all 300ms ease; width: 389px; z-index: 1003; top: 0px; left: 0px; margin-left: 0px; opacity: 1; -webkit-transform: none;"><span class="filter">All types ( 5 )</span></li>
+
+                            <li data-value="book-chapter" style="transition: all 300ms ease; -webkit-transition: all 300ms ease; width: 389px; z-index: 1002; margin-left: 0px; opacity: 1; top: 3px; left: 0px; -webkit-transform: none;"><span class="filter">Book Chapter ( 2 )</span></li>
+
+                            <li data-value="cpaper" style="transition: all 300ms ease; -webkit-transition: all 300ms ease; z-index: 1001; margin-left: 0px; opacity: 1; top: 6px; left: 2px; width: 385px; -webkit-transform: none;"><span class="filter">Conference paper ( 1 )</span></li>
+
+                            <li data-value="jpaper" style="transition: all 300ms ease; -webkit-transition: all 300ms ease; z-index: 1000; margin-left: 0px; opacity: 1; top: 9px; left: 4px; width: 381px; -webkit-transform: none;"><span class="filter">Journal paper ( 2 )</span></li>
+                        </ul>
+                    </div>
+                </div>
+		</div></div>
+            </div>
+        <div class="container extendfull">
+       
+
             <div class="row">
                 <div class="col-lg-9 col-md-11">
                     <div id="status" class="status">

@@ -10,6 +10,13 @@ header {
 	position:absolute; top:50%; height: 160px;
 margin-top: -100px;padding-top: 0;width: 100%;
 }
+
+.light {
+	background-color: #f7f7f7;
+}
+.white {
+	background-color: white;
+}
 .dark .form-inline .btn-lg {
 	color:#17C3B9;
 	line-height: 1.5;
@@ -23,7 +30,6 @@ html, body {
 }
 body {
 	font-family: 'Lato', sans-serif;
-background-color: #f7f7f7;
 }
 #wrapper {
 	min-height: 100%;
