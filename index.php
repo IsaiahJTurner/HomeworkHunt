@@ -57,6 +57,7 @@ var _paq = _paq || [];
                     </div>
                 </div>
             </form>
+            <button class="btn btn-default btn-lg center-block share" type="button"><a href="share.php" style="text-decoration:none;">Share Your Homework!</a></button>
         </div>
     </div>
 

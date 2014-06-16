@@ -139,6 +139,14 @@ input:focus {
 .info {
 }
 
+.share {
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	-o-border-radius:10px;
+	border-radius:10px;
+	border:none;
+}
+
 .submit {
 	background:#17C3B9;
 	font-size:16px;
