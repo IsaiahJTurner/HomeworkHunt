@@ -104,7 +104,7 @@ var _paq = _paq || [];
             <div class="row">
                 <form class="form-inline" role="form">
                     <div class="form-group">
-                        <label class="sr-only" for="exampleInputEmail2">Desired Username</label> <input type="email" class="form-control input-lg" id="exampleInputEmail2" placeholder="JohnDoe">
+                        <label class="sr-only" for="exampleInputEmail2">Desired Username</label> <input type="text" class="form-control input-lg" id="exampleInputEmail2" placeholder="JohnDoe">
                     </div>
 
                     <div class="form-group">
