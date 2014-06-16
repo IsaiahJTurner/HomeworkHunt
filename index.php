@@ -113,7 +113,7 @@ var _paq = _paq || [];
 
                     <div class="form-group">
                         <label class="sr-only" for="exampleInputPassword2">Password</label> <input type="password" class="form-control input-lg" id="exampleInputPassword2" placeholder="********">
-                    </div><button type="submit" class="btn btn-default btn-lg">Join the Hunt</button>
+                    </div> <button type="submit" class="btn btn-default btn-lg">Join the Hunt</button>
                 </form>
             </div>
 
