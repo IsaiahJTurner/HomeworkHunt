@@ -121,6 +121,8 @@
 .cd-active.cd-dropdown > span,.cd-active.cd-dropdown ul li span {
 	box-shadow:0 1px 1px rgba(0,0,0,0.1);
 }
+border-left-color: #03cc85;
+}
 
 .cd-active.cd-dropdown ul li span {
 	-webkit-transition:all .2s linear 0;
@@ -146,7 +148,6 @@
 
 h1,h2,h3,h4,h5,h6 {
 	font-family:"Lato",Helvetica,Arial,sans-serif;
-	font-weight:300;
 }
 
 html,body {

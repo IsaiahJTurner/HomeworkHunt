@@ -64,11 +64,11 @@ var _paq = _paq || [];
 
                         <div class="row contact">
                             <div class="col-xs-6 text-left">
-                                <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Live Chat</a><br>
+                                <a href="http://chill.homeworkhunt.com" target="_blank" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;">Chill Zone</a><br>
                             </div>
 
                             <div class="col-xs-6 text-right">
-                                <a href="#" data-toggle="modal" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" data-target=".donate">Email Us</a>
+                                <a href="mailto:cacount@homeworkhunt.com" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" >Email Us</a>
                             </div>
                         </div>Not <?php echo(htmlspecialchars($profile['username'])); ?>? <a href="/api/logout">Logout</a>.
                     </div>

@@ -1,6 +1,6 @@
     <footer>
         <div class="container text-center">
-            <p >Made with <i class="fa fa-heart"><?php ?></i> by <a target="_blank" href="http://isaiahjturner.com">Isaiah Turner</a> & <a target="_blank" href="http://lukejarboe.com/">Luke Jarboe</a> in Maryland.</p>
+            <p >Made with <i class="fa fa-heart"><?php ?></i> by two high school students.</p>
 
             <a href="/legal">Legal</a> - <a href="#">Press</a>
         </div>

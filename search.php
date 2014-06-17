@@ -62,7 +62,7 @@ var _paq = _paq || [];
                             <option value="-1" selected>
                                 All
                             </option>
-
+                            
                             <option value="1">
                                 Worksheet
                             </option>
@@ -81,6 +81,10 @@ var _paq = _paq || [];
                             
                             <option value="5">
                                 Workbook
+                            </option>
+                            
+                            <option value="6" selected>
+                                Other
                             </option>
                         </select>
                     </div>

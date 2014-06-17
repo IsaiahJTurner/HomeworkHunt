@@ -156,7 +156,6 @@ $(document).ready(function() {
 				return;
 			} else if (val.length > 2) {
 				$('#status').html("Loading results...");
-				alert(val);
 				searchArgs.query = val;
 				updateSearchResults();
 			} else {
