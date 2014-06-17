@@ -135,7 +135,7 @@ class CloudConvert {
     /*
      * Download and return output file
      */
-    public function download($target) {
+    public function download() {
         if (empty($this -> data -> output -> url))
             throw new Exception("No download URL found! (Conversion not finished or failed)");
         if (strpos($this -> data -> output -> url, 'http') === false)
@@ -185,7 +185,7 @@ class CloudConvert {
         /*
          * If you have SSL cert errors, try to disable SSL verifyer.
          */
-        //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
         if (!empty($post)) {
             curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -200,7 +200,7 @@ class CloudConvert {
         } else {
             $json = json_decode($return);
             if (isset($json -> error))
-                throw new Exception("Request Exception: Invalid file type.");
+                throw new Exception("Request Exception: ".$json -> error);
             return $json;
         }
         curl_close($ch);

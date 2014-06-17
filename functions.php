@@ -86,7 +86,6 @@ class Whack {
 		);
 		
 		$process -> setOption("callback", SERVER_PROTOCOL."://".SERVER_HOSTNAME."/services/CloudConvert/callback?callback=true&secret=".CLOUDCONVERT_KEY."&hw=".$post);
-		echo(SERVER_PROTOCOL."://".SERVER_HOSTNAME."/services/CloudConvert/callback?callback=true&secret=".CLOUDCONVERT_KEY."&hw=".$post);
 		$process -> uploadByUrl($fileURL, $fileName, "txt");
 		return true;
 	}

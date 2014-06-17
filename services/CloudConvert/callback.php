@@ -19,8 +19,10 @@ if (!empty($_REQUEST['callback'])) {
     // see: https://cloudconvert.org/page/api#callback
     $process = CloudConvert::useProcess($_REQUEST['url']);
 
-    $status = $process -> status();
-    if ($status -> step == 'finished') {
+    $status = $process->status();
+  
+    if ($status->step == 'finished') {
+    
         $content = $process -> download();
 		
         $whack->proccessContent($_REQUEST['hw'], $content);
@@ -28,7 +30,7 @@ if (!empty($_REQUEST['callback'])) {
     } else {
         error_log("CloudConvert Error Message: ".$status -> message);
     }
-    $process -> delete();
+    //$process -> delete();
 
 } else {
 	die("This does not look like a callback");

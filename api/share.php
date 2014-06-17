@@ -18,3 +18,4 @@ if (strlen($title) > 255) {
 if ($file['error'] > 0) respondError($_FILES['file']['error'], "Error uploading file.");
 
 $whack->share($user, $title, $description, $file);
+respondError(1, "Success");
