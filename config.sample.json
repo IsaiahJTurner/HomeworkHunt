@@ -1,8 +1,21 @@
 {
-  "selectQuery" : "SELECT i.id, i.title, i.description, i.file, i.content, COALESCE(SUM(CASE WHEN a.isUpvote THEN 1 ELSE -1 END),0) AS rating FROM submissions AS i LEFT JOIN votes AS a ON i.id = a.post GROUP BY i.id",
-  "updateQuery" : "SELECT i.id, i.title, i.description, i.file, i.content, COALESCE(SUM(CASE WHEN a.isUpvote THEN 1 ELSE -1 END),0) AS rating FROM submissions AS i LEFT JOIN votes AS a ON i.id = a.post WHERE i.updated > _$ GROUP BY i.id",
+  "selectQuery" : "SELECT `i`.`id`, `i`.`type`,`i`.`title`,`i`.`lastVote`, `i`.`file`,
+CONCAT(IFNULL(`i`.`description`, ''), ' ', IFNULL(`i`.`content`,'')) AS content,
+COALESCE(SUM(CASE WHEN `a`.`isUpvote` THEN 1 ELSE -1 END),0) AS rating
+FROM `submissions` AS i
+LEFT JOIN `votes` AS a
+ON `i`.`id` = `a`.`post`
+GROUP BY `i`.`id`",
+  "updateQuery" : "SELECT `i`.`id`, `i`.`type`,`i`.`title`,`i`.`lastVote`, `i`.`file`,
+CONCAT(IFNULL(`i`.`description`, ''), ' ', IFNULL(`i`.`content`,'')) AS content,
+COALESCE(SUM(CASE WHEN `a`.`isUpvote` THEN 1 ELSE -1 END),0) AS rating
+FROM `submissions` AS i
+LEFT JOIN `votes` AS a
+ON `i`.`id` = `a`.`post`
+WHERE `i`.`lastVote` > _$
+GROUP BY `i`.`id`",
   "primaryField" : "id",
-  "updatedAtField": "updated",
+  "updatedAtField": "lastVote",
   "source" : "jdbc:mysql://HostnameOfYourDatabase/YourDatabaseName",
   "username" : "Your MYSQL Username",
   "password" : "Your MYSQL Password",
