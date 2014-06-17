@@ -21,6 +21,9 @@ if (!isset($_GET['q'])) $_GET['q'] = "";
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript">
 </script>
+<script src="/js/jquery.dropdown.js" type="text/javascript" defer="defer">
+</script>
+
     <script src="/js/script.js" type="text/javascript">
 </script>
     <script src="/js/modernizr.custom.js" type="text/javascript">
@@ -55,7 +58,7 @@ var _paq = _paq || [];
                         <h3 style="padding: 10px initial;">Filter:</h3>
                     </div>
                     <div class="col-md-11 col-sm-10 col-xs-9">
-                        <select id="cd-dropdown" class="cd-select">
+                        <select id="filter-type" class="cd-select">
                             <option value="-1" selected>
                                 All
                             </option>
@@ -74,6 +77,10 @@ var _paq = _paq || [];
 
                             <option value="4">
                                 Project
+                            </option>
+                            
+                            <option value="5">
+                                Workbook
                             </option>
                         </select>
                     </div>
@@ -98,10 +105,8 @@ var _paq = _paq || [];
         <div id="push"></div>
     </div><?php include("includes/footer.php"); ?>
     
-        <script src="/js/jquery.dropdown.js" type="text/javascript">
-</script>
-<script type="text/javascript">
-    		$( '#cd-dropdown' ).dropdown();
+        <script type="text/javascript">
+    		
 
     </script>
 </body>

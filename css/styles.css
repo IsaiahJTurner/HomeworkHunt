@@ -156,7 +156,14 @@ html,body {
 body {
 	font-family:'Lato',sans-serif;
 }
-
+.hw-content {
+padding: 9.5px;
+margin: 0 0 10px;
+color: #333;
+background-color: #f5f5f5;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
 #wrapper {
 	min-height:100%;
 	height:auto!important;

@@ -1,3 +1,8 @@
+var searchArgs = {
+			'query': "",
+			'hitsPerPage': 2,
+			'getRankingInfo': 1
+		}
 $(document).ready(function() {
 	downvoteActive = false;
 	upvoteActive = false;
@@ -151,13 +156,20 @@ $(document).ready(function() {
 				return;
 			} else if (val.length > 2) {
 				$('#status').html("Loading results...");
-				updateSearchResults(val);
+				alert(val);
+				searchArgs.query = val;
+				updateSearchResults();
 			} else {
 				$('#status').html("<h2>Oops!</h2><h4>You must enter at least three charecters to search.</h4>");
 			}
 		}, ms);
 	});
 	$("#search").trigger("change");
+	$('#filter-type').dropdown();
+	$("input[name='filter-type']").change(function() {
+		searchArgs.numericFilters = "type=" + $(this).val().toString();
+		updateSearchResults();
+	});
 });
 $(document).ready(updateFullHeightSections);
 $(window).on('resize', updateFullHeightSections);
@@ -166,16 +178,11 @@ function updateFullHeightSections() {
 	$('.fullHeight').css('min-height', $(window).height() + 'px');
 }
 
-function updateSearchResults(q) {
-	lastQuery = q;
-	var optionsArray = {
-		'query': q,
-		'hitsPerPage': 2,
-		'getRankingInfo': 1
-	};
+function updateSearchResults() {
+	lastQuery = searchArgs.query;
 	var options = new Array();
-	for (key in optionsArray) {
-		options.push(key + '=' + optionsArray[key]);
+	for (key in searchArgs) {
+		options.push(key + '=' + searchArgs[key]);
 	}
 	var optionsString = options.join('&');
 	$.ajax({
@@ -190,9 +197,18 @@ function updateSearchResults(q) {
 		}),
 		success: function(data, textStatus, jqXHR) {
 			if (data['nbHits'] == 0) {
-				$('#status').html("<h2>Sorry!</h2><h4>No matching results were found</h4>");
+				$('#status').html("<h2>Sorry!</h2><h4>No matching results were found for " + data['query'] + ".</h4>");
 			} else {
-				$('#status').html(data['nbHits'] + " result(s) found.");
+				if (data['page'] == 0) {
+					data['page'] = 1;
+				}
+				var pluralResults;
+				if (data['nbHits'] > 1) {
+					pluralResults = "s";
+				} else {
+					pluralResults = "";
+				}
+				$('#status').html("Page " + data['page'] + " of " + data['nbPages'] + " for " + data['nbHits'] + " result" + pluralResults + " found.");
 				var html;
 				for (var i = 0; i < data['hits'].length; i++) {
 					var hit = data['hits'][i];

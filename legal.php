@@ -37,7 +37,7 @@
 
                     <p>Last updated: June 13, 2014</p>
 
-                    <p>Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the http://homeworkhunt.com/ website (the "Service") operated by Isaiah Turner AND LUKE JARBOE :P ("Homework Hunt", "us", "we", or "our").</p>
+                    <p>Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the http://homeworkhunt.com/ website (the "Service") operated by Isaiah Turner ("Homework Hunt", "us", "we", or "our").</p>
 
                     <p>Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.</p>
 

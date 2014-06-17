@@ -145,6 +145,7 @@
 					var opt = $( this );
 					self.options.onOptionSelect( opt );
 					self.inputEl.val( opt.data( 'value' ) );
+					self.inputEl.change();
 					self.selectlabel.html( opt.html() );
 					self.close();
 				}

@@ -104,7 +104,6 @@ class Whack {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
 		$query = "INSERT INTO `votes` (`user`, `post`, `isUpvote`) VALUES ('$user', '$post', '$isUpvote') ON DUPLICATE KEY UPDATE `isUpvote` = VALUES(`isUpvote`)";
 		$result = mysqli_query($mysqli, $query);
-		mysqli_query($mysqli, "UPDATE `submissions` SET `lastVote`=CURRENT_TIMESTAMP WHERE `id` = 5");
 	}
 
 	// Returns wether the user is allowed to vote.

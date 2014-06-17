@@ -78,7 +78,7 @@ var _paq = _paq || [];
         <div class="col-lg-8 col-lg-push-2 col-md-10 col-md-push-1">
             <h2><?php echo(htmlspecialchars($hw['title'])); ?></h2>
 <br>
-           <pre><?php echo(htmlspecialchars($hw['description'])); ?></pre>
+           <div class="hw-content"><?php echo(htmlspecialchars($hw['description'])); ?></div>
 <br>
             <div class="row">
                 <div class="col-sm-3 col-xs-6">
