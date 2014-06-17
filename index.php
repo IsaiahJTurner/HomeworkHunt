@@ -46,8 +46,8 @@ var _paq = _paq || [];
 <body class="landing">
 	<div class="wrapper">
 	<?php include("includes/header.php"); ?>
-    <div class="main fullHeight">
-        <div class="container" style="padding-top:0;">
+    <div class="main dark fullHeight">
+        <div class="container text-center">
             <form method="get" action="/search">
                 <div class="row">
                     <div class="col-md-6 col-md-push-3 col-xs-8 col-xs-push-2 text-center"><img src="img/logo-light.png" width="80%" style="margin-left:10%; margin-bottom:15px;" class="img-responsive"></div>
@@ -56,8 +56,10 @@ var _paq = _paq || [];
                         <input type="text" autofocus="" class="search" name="q" placeholder="Search homework..." autocomplete="off"> <input type="submit" class="submit" value="GO">
                     </div>
                 </div>
-            </form>
-            <button class="btn btn-default btn-lg center-block share" type="button"><a href="share.php" style="text-decoration:none;">Share Your Homework!</a></button>
+            </form><br/>
+            <div class="row">
+            <a href="/share" class="btn-default btn btn-lg">Share Your Homework!</a>
+            </div>
         </div>
     </div>
 
@@ -95,10 +97,10 @@ var _paq = _paq || [];
 
     <div class="dark">
         <div class="container  text-center">
-            <h2>Having trouble getting an invite?</h2>
+            <h2>Share to download!</h2>
 
             <div class="row">
-                <p class="col-xl-push-3 col-xl-6 col-lg-push-2 col-lg-8 col-md-push-1 col-md-10">Create a "share only" account and share your homework. After sharing quality homework you can request a full account! We'll email you when you've eared your privilege!</p>
+                <p class="col-xl-push-3 col-xl-6 col-lg-push-2 col-lg-8 col-md-push-1 col-md-10">Before you can earn the privilege of downloading, you must first share a few pieces of homework. Make sure it's correct, spam or incorrect homework can get you banned!</p>
             </div>
 
             <div class="row">
@@ -118,7 +120,7 @@ var _paq = _paq || [];
             </div>
 
             <div class="row text-center">
-                <p>By clicking "Join the Hunt" you agree to our <a href="/legal">Terms</a>.</p>
+                <p>By clicking "Join the Hunt" you agree to our <a href="/legal">Terms and Conditions</a>.</p>
             </div>
         </div>
     </div>

@@ -79,7 +79,6 @@ class CloudConvert {
         $this -> req($this -> url, array_merge(array(
             'input' => 'download',
             'format' => $outputformat,
-            'filename' => $filename,
             'link' => $url,
         ), $this -> options));
 
@@ -134,22 +133,22 @@ class CloudConvert {
     }
 
     /*
-     * Download output file to local target
+     * Download and return output file
      */
     public function download($target) {
         if (empty($this -> data -> output -> url))
             throw new Exception("No download URL found! (Conversion not finished or failed)");
         if (strpos($this -> data -> output -> url, 'http') === false)
             $this -> data -> output -> url = "https:" . $this -> data -> output -> url;
-        $fp = fopen($target, 'w+');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this -> data -> output -> url);
-        curl_setopt($ch, CURLOPT_FILE, $fp);
-        if (!curl_exec($ch)) {
-            throw new Exception(curl_error($ch));
-        }
+        $result = curl_exec($ch);
         curl_close($ch);
-        fclose($fp);
+        if ($result) {
+            return $result;
+        } else {
+	        throw new Exception(curl_error($ch));
+        }
     }
     
     /*
@@ -201,7 +200,7 @@ class CloudConvert {
         } else {
             $json = json_decode($return);
             if (isset($json -> error))
-                throw new Exception($json -> error);
+                throw new Exception("Request Exception: Invalid file type.");
             return $json;
         }
         curl_close($ch);

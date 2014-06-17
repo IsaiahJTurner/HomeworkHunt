@@ -153,7 +153,7 @@ $(document).ready(function() {
 				$('#status').html("Loading results...");
 				updateSearchResults(val);
 			} else {
-				$('#status').html("No matching results found.");
+				$('#status').html("<h2>Oops!</h2><h4>You must enter at least three charecters to search.</h4>");
 			}
 		}, ms);
 	});
@@ -190,7 +190,7 @@ function updateSearchResults(q) {
 		}),
 		success: function(data, textStatus, jqXHR) {
 			if (data['nbHits'] == 0) {
-				$('#status').html("No matching results found.");
+				$('#status').html("<h2>Sorry!</h2><h4>No matching results were found</h4>");
 			} else {
 				$('#status').html(data['nbHits'] + " result(s) found.");
 				var html;

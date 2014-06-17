@@ -2,12 +2,14 @@
 ini_set('display_errors', 'On');
 
 
-require 'vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 
 use Aws\S3\S3Client;
 
 
-require_once("config.php");
+require_once(__DIR__."/config.php");
+require_once(__DIR__."/services/CloudConvert/api.php");
+
 class Whack {
 
 	// Authenticates a user.
@@ -56,18 +58,48 @@ class Whack {
 
 		$post = mysqli_insert_id($mysqli);
 		$query_2 = "INSERT INTO `votes` (`user`, `post`, `isUpvote`) VALUES ('$user', '$post', '1')";
-		mysqli_query($mysqli, $$query_2);
+		mysqli_query($mysqli, $query_2);
 
 
 		$s3 = S3Client::factory();
+		$s3FileName = $fileHash.".".pathinfo($file['name'], PATHINFO_EXTENSION);
 		$s3->putObject(array(
 				'Bucket' => "TheHWHack",
-				'Key'    => $fileHash.".".pathinfo($file['name'], PATHINFO_EXTENSION),
+				'Key'    => $s3FileName,
 				'Body'   => fopen($file['tmp_name'], 'r+')
 			));
+		if (strtolower(pathinfo($file['name'], PATHINFO_EXTENSION)) == "txt") {
+			$fileContent = file_get_contents($file['tmp_name']);
+			$this->proccessContent($post, $fileContent);
+			return true;
+		}
+		
+		$apikey = CLOUDCONVERT_KEY;
+		$process = CloudConvert::createProcess(pathinfo($file['name'], PATHINFO_EXTENSION), "txt", $apikey);
+		$fileURL = $s3->getObjectUrl(
+			"TheHWHack",
+			$s3FileName,
+			'30 minutes',
+			array(
+				'ResponseContentDisposition' => 'attachment; filename="'.$fileName.'"'
+			)
+		);
+		
+		$process -> setOption("callback", SERVER_PROTOCOL."://".SERVER_HOSTNAME."/services/CloudConvert/callback?callback=true&secret=".CLOUDCONVERT_KEY."&hw=".$post);
+		echo(SERVER_PROTOCOL."://".SERVER_HOSTNAME."/services/CloudConvert/callback?callback=true&secret=".CLOUDCONVERT_KEY."&hw=".$post);
+		$process -> uploadByUrl($fileURL, $fileName, "txt");
 		return true;
 	}
 
+	// Used for CloudConvert callback to allow easier search.
+	function proccessContent($hw, $content) {
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
+		$content_safe = mysqli_real_escape_string($mysqli, $content);
+		$hw = intval($hw);
+		$query = "UPDATE `submissions` SET `content` = '$content_safe' WHERE `id` = '$hw'";
+		mysqli_query($mysqli, $query);
+
+	}
 	// Casts vote on a HW
 	function vote($user, $post, $isUpvote = false) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($link));
@@ -97,7 +129,7 @@ class Whack {
 		$result = mysqli_query($mysqli, $query);
 		return false;
 	}
-	
+
 	function getPrice($item) {
 		return 5;
 	}

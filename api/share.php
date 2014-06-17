@@ -15,6 +15,6 @@ $file = $_FILES['file'];
 if (strlen($title) > 255) {
 	respondError(3, "Title too long.");
 }
-if ($_FILES['file']['error'] > 0) respondError($_FILES['file']['error'], "Error uploading file.");
+if ($file['error'] > 0) respondError($_FILES['file']['error'], "Error uploading file.");
 
 $whack->share($user, $title, $description, $file);

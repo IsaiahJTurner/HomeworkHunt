@@ -19,10 +19,13 @@ if (!isset($_GET['q'])) $_GET['q'] = "";
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript">
 </script>
     <script src="/js/script.js" type="text/javascript">
 </script>
+    <script src="/js/modernizr.custom.js" type="text/javascript">
+</script>
+
     <script src="/js/bootstrap.js" type="text/javascript">
 </script><!-- Piwik -->
 
@@ -44,33 +47,41 @@ var _paq = _paq || [];
 <body>
     <div id="wrapper">
         <?php include("includes/header.php"); ?>
-		<div class="container-fluid light">
-		<div class="container">
-		<div class="row">
-                <div class="col-md-3">
-                    <h3>Filter by type:</h3>
-                </div>
 
-                <div class="col-md-6">
-                    <div class="cd-dropdown">
-                        <span style="z-index: 1004;"><span class="filter">All types ( 5 )</span></span> <input type="hidden" name="cd-dropdown" value="all">
+        <div class="container-fluid light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1 col-sm-2 col-xs-3">
+                        <h3 style="padding: 10px initial;">Filter:</h3>
+                    </div>
+                    <div class="col-md-11 col-sm-10 col-xs-9">
+                        <select id="cd-dropdown" class="cd-select">
+                            <option value="-1" selected>
+                                All
+                            </option>
 
-                        <ul style="height: auto;">
-                            <li data-value="all" style="transition: all 300ms ease; -webkit-transition: all 300ms ease; width: 389px; z-index: 1003; top: 0px; left: 0px; margin-left: 0px; opacity: 1; -webkit-transform: none;"><span class="filter">All types ( 5 )</span></li>
+                            <option value="1">
+                                Worksheet
+                            </option>
 
-                            <li data-value="book-chapter" style="transition: all 300ms ease; -webkit-transition: all 300ms ease; width: 389px; z-index: 1002; margin-left: 0px; opacity: 1; top: 3px; left: 0px; -webkit-transform: none;"><span class="filter">Book Chapter ( 2 )</span></li>
+                            <option value="2">
+                                Essay
+                            </option>
 
-                            <li data-value="cpaper" style="transition: all 300ms ease; -webkit-transition: all 300ms ease; z-index: 1001; margin-left: 0px; opacity: 1; top: 6px; left: 2px; width: 385px; -webkit-transform: none;"><span class="filter">Conference paper ( 1 )</span></li>
+                            <option value="3">
+                                Book Work
+                            </option>
 
-                            <li data-value="jpaper" style="transition: all 300ms ease; -webkit-transition: all 300ms ease; z-index: 1000; margin-left: 0px; opacity: 1; top: 9px; left: 4px; width: 381px; -webkit-transform: none;"><span class="filter">Journal paper ( 2 )</span></li>
-                        </ul>
+                            <option value="4">
+                                Project
+                            </option>
+                        </select>
                     </div>
                 </div>
-		</div></div>
             </div>
-        <div class="container extendfull">
-       
+        </div>
 
+        <div class="container extendfull" style="min-height:135px;">
             <div class="row">
                 <div class="col-lg-9 col-md-11">
                     <div id="status" class="status">
@@ -86,5 +97,12 @@ var _paq = _paq || [];
 
         <div id="push"></div>
     </div><?php include("includes/footer.php"); ?>
+    
+        <script src="/js/jquery.dropdown.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+    		$( '#cd-dropdown' ).dropdown();
+
+    </script>
 </body>
 </html>

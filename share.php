@@ -142,7 +142,7 @@ var _paq = _paq || [];
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <div style="position:relative;">
-                                                        <a class='btn btn-default' href='javascript:;'>Select File... <input type="file" style='position:absolute;height: 35px;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40" onchange='$("#upload-file-info").html($(this).val());'></a> &nbsp; <span class='label label-primary' id="upload-file-info"></span>
+                                                        <a class='btn btn-default' href='javascript:;'>Select File... <input accept=".doc,.docx,.html,.pages,.txt,.pdf,.rtf,.md,.abw,.djvu,.lwp,.odt,.pages.zip,.sdw,.tex,.wpd,.wps,.zabw" type="file" style='position:absolute;height: 35px;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file" size="40" onchange='$("#upload-file-info").html($(this).val());'></a> &nbsp; <span class='label label-primary' id="upload-file-info"></span>
                                                     </div>
                                                 </div>
 
