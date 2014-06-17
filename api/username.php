@@ -1,5 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: http://chill.homeworkhunt.com");
+header("Access-Control-Allow-Credentials: true");
+
 header("Content-Type: application/json");
 
 require_once("../functions.php");
