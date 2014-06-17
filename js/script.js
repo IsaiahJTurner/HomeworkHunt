@@ -114,12 +114,10 @@ $(document).ready(function() {
 						html: true,
 						title: "Login Required",
 						placement: 'top',
-						content: "Please click the button below to log in. You may then return to this page to download the file.<br><br><a id='login' style='width:100%' href='/login' class='btn btn-sm btn-primary' target='_blank'>Log in</a>"
+						content: "Please click the button below to log in. You may then return to this page to download the file for <strong>free</strong>.<br><br><a id='login' style='width:100%' href='/login' class='btn btn-sm btn-primary' target='_blank'>Log in</a>"
 					}).popover("show");
 					$('#login').click(function() {
 						$('#download').popover("hide");
-						$('#download').popover("disable");
-						$(".popover").remove();
 					});
 				}
 				if (data['response']['code'] == 3) {

@@ -155,7 +155,8 @@ class Whack {
 	// Returns an array of information pertaining to a homework assignment
 	function homework($id, $user = 0) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
-		$id_safe = mysqli_real_escape_string($mysqli,$id);
+		$id_safe = intval($id);
+		$user = intval($user);
 		$query = "SELECT * FROM `submissions` WHERE `id` = '$id_safe'";
 		$result = mysqli_query($mysqli, $query) or die("Error " . mysqli_error($mysqli));
 		if (mysqli_num_rows($result) == 0) {
@@ -164,19 +165,19 @@ class Whack {
 		$hw = mysqli_fetch_assoc($result);
 
 
-		$user = $this->getUser($hw["user"]);
-		$hw["by"] = $user['username'];
-		$hw["trusted"] = $user["trusted"];
+		$acct = $this->getUser($hw["user"]);
+		$hw["by"] = $acct['username'];
+		$hw["trusted"] = $acct["trusted"];
 
 
 		$result_3 = mysqli_query($mysqli, "SELECT COALESCE(SUM(CASE WHEN `isUpvote` THEN 1 ELSE -1 END),0) AS rating FROM `votes` WHERE `post` = '$id_safe'") or die("Error " . mysqli_error($mysqli));
 		$row_3 = mysqli_fetch_assoc($result_3);
 		$hw["rating"] = $row_3['rating'];
 
-
 		$result_4 = mysqli_query($mysqli, "SELECT `isUpvote` FROM `votes` WHERE `user` = '$user' AND `post` = '$id_safe'") or die("Error " . mysqli_error($mysqli));
+		
 		$row_4 = mysqli_fetch_assoc($result_4);
-		if(!isset($row_4['isUpvote']) || $user == 0) {
+		if($user == 0 || empty($row_4['isUpvote']) ) {
 			$hw["voteStatus"] = "never";
 		} else if ($row_4['isUpvote'] == "1") {
 				$hw["voteStatus"] = "upvoted";
