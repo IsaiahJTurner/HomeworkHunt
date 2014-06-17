@@ -140,8 +140,10 @@ class CloudConvert {
             throw new Exception("No download URL found! (Conversion not finished or failed)");
         if (strpos($this -> data -> output -> url, 'http') === false)
             $this -> data -> output -> url = "https:" . $this -> data -> output -> url;
+            
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this -> data -> output -> url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($ch);
         curl_close($ch);
         if ($result) {
