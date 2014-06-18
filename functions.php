@@ -18,10 +18,12 @@ class Whack {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
 		$login = mysqli_escape_string($mysqli,$login);
 		$query = "SELECT `id` FROM `users` WHERE (`email` = '$login' OR `username` = '$login') AND `password` = '$password_hashed'";
+		echo($query);
 		$result = mysqli_query($mysqli, $query) or die("Error " . mysqli_error($mysqli));
 		if (!$result) return false;
-		$array = mysqli_fetch_array($result);
-		$user = $array[0]["id"];
+		if (mysqli_num_rows($result) == 0) return false;
+		$array = mysqli_fetch_assoc($result);
+		$user = $array["id"];
 		$time = date('YmdHis');
 
 		$sid = sha1($time + $user);

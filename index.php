@@ -99,7 +99,7 @@ font-size: 35px;"><?php ?></i>-->
 
                     <h4>Stop Pesky Teachers</h4>
 
-                    <p>We defiantly don't want teachers on Homework Hunt! Sense only users who have logged in and earned credits are able to download, you teacher would have to upload their answer key and earn credits in order to snoop on you! And even if that did happen, would you really be complaining? ;)</p>
+                    <p>We definitely don't want teachers on Homework Hunt! Since only users who have logged in and earned credits are able to download, you teacher would have to upload their answer key and earn credits in order to snoop on you! And even if that did happen, would you really be complaining? ;)</p>
                 </div>
             </div>
         </div>
