@@ -7,7 +7,7 @@ $homepage = true;
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Homework Hunt, hw hunt, answers, homework, essays, papers, projects, hw">
-    <meta name="description" content="Find answers to any class assignment shared by users like you! Fuel the community, upload your answers today! It's free!">
+    <meta name="description" content="A community for exchanging homework answers! Share homework you know, search for what you don't!">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -34,14 +34,14 @@ var _paq = _paq || [];
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://localhost/analytics/";
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://homeworkhunt.com/analytics/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
     _paq.push(['setSiteId', 1]);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
     g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
     })();
     </script><noscript>
-    <p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
+    <p><img src="http://homeworkhunt.com/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
 </head>
 
 <body class="landing">

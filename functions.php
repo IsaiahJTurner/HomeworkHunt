@@ -248,8 +248,29 @@ class Whack {
 		$row = mysqli_fetch_assoc($result);
 		return $row['id'];
 	}
-
-
+	// Returns a count of how many pages posts will take up on the sitemap.
+	function sitemapePages() {
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
+		$query = "SELECT COUNT(1) as total FROM `submissions`";
+		$result = mysqli_query($mysqli, $query) or die("Error " . mysqli_error($mysqli));
+		$row = mysqli_fetch_assoc($result);
+		$totalCount = $row['total'];
+		return ceil($totalCount/50000);
+	}
+	// Returns HW ID's for each of the 
+	function sitemapPage($page) {
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
+		$skip = ($page-1)*50000;
+		$query = "SELECT `id`,UNIX_TIMESTAMP(`updated`) as updated FROM `submissions` LIMIT $skip,50000";
+		$result = mysqli_query($mysqli,$query);
+		$posts = array();
+		while ($row = mysqli_fetch_assoc($result)) {
+			$id = $row['id'];
+			$posts[$id] = $row['updated'];
+		}
+		return $posts;
+	}
+	
 	function creditsRemaining($user) {
 		return 5;
 	}
