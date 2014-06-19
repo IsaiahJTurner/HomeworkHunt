@@ -75,7 +75,7 @@ class Whack {
 			$this->proccessContent($post, $fileContent);
 			return true;
 		}
-		
+
 		$apikey = CLOUDCONVERT_KEY;
 		$process = CloudConvert::createProcess(pathinfo($file['name'], PATHINFO_EXTENSION), "txt", $apikey);
 		$fileURL = $s3->getObjectUrl(
@@ -86,7 +86,7 @@ class Whack {
 				'ResponseContentDisposition' => 'attachment; filename="'.$fileName.'"'
 			)
 		);
-		
+
 		$process -> setOption("callback", SERVER_PROTOCOL."://".SERVER_HOSTNAME."/services/CloudConvert/callback?callback=true&secret=".CLOUDCONVERT_KEY."&hw=".$post);
 		$process -> uploadByUrl($fileURL, $fileName, "txt");
 		return true;
@@ -177,7 +177,7 @@ class Whack {
 		$hw["rating"] = $row_3['rating'];
 
 		$result_4 = mysqli_query($mysqli, "SELECT `isUpvote` FROM `votes` WHERE `user` = '$user' AND `post` = '$id_safe'") or die("Error " . mysqli_error($mysqli));
-		
+
 		$row_4 = mysqli_fetch_assoc($result_4);
 		if($user == 0 || empty($row_4['isUpvote']) ) {
 			$hw["voteStatus"] = "never";
@@ -200,7 +200,7 @@ class Whack {
 		$row = mysqli_fetch_assoc($result);
 		return $row;
 	}
-	
+
 	// Returns search results for the query string.
 	function search($q) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
@@ -257,7 +257,7 @@ class Whack {
 		$totalCount = $row['total'];
 		return ceil($totalCount/50000);
 	}
-	// Returns HW ID's for each of the 
+	// Returns HW ID's for each of the
 	function sitemapPage($page) {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
 		$skip = ($page-1)*50000;
@@ -270,7 +270,7 @@ class Whack {
 		}
 		return $posts;
 	}
-	
+
 	function creditsRemaining($user) {
 		return 5;
 	}

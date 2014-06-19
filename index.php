@@ -51,9 +51,11 @@ var _paq = _paq || [];
         <div class="main dark fullHeight">
             <div class="container text-center">
                 <div class="row">
-                    <div class="col-md-6 col-md-push-3 col-xs-8 col-xs-push-2 text-center"><img src="img/logo-light.png" width="80%" style="display:inline;margin-left:10%; margin-bottom:15px;" class="img-responsive"><span style="position: absolute;
+                    <div class="col-md-6 col-md-push-3 col-xs-8 col-xs-push-2 text-center">
+                        <img src="img/logo-light.png" width="80%" style="display:inline;margin-left:10%; margin-bottom:15px;" class="img-responsive"><span style="position: absolute;
 right: -20px;
-font-size: 22px;">beta</span></div>
+font-size: 22px;">beta</span>
+                    </div>
 
                     <div class="row text-center">
                         <form method="get" action="/search">

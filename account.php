@@ -3,8 +3,8 @@ require_once("functions.php");
 $whack = new Whack();
 $user_id = $whack->getProfileID();
 if (!$user_id) {
-	header("Location: /register");
-	die("You need to login to access your account.");
+    header("Location: /register");
+    die("You need to login to access your account.");
 }
 $profile = $whack->getProfile($user_id);
 ?>
@@ -38,14 +38,14 @@ var _paq = _paq || [];
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://localhost/analytics/";
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://homeworkhunt.com/analytics/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
     _paq.push(['setSiteId', 1]);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
     g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
     })();
     </script><noscript>
-    <p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
+    <p><img src="http://homeworkhunt.com/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
 </head>
 
 <body>
@@ -68,54 +68,61 @@ var _paq = _paq || [];
                             </div>
 
                             <div class="col-xs-6 text-right">
-                                <a href="mailto:cacount@homeworkhunt.com" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;" >Email Us</a>
+                                <a href="mailto:cacount@homeworkhunt.com" class="btn btn-primary text-center" style="width:95%; margin-bottom: 10px;">Email Us</a>
                             </div>
                         </div>Not <?php echo(htmlspecialchars($profile['username'])); ?>? <a href="/api/logout">Logout</a>.
                     </div>
-                </div>
+                </div><?php if(count($profile['posts']) == 0) {
+                    ?>
 
-                
-                <?php if(count($profile['posts']) == 0) {
-	?>
-	<div class="col-lg-7 col-lg-push-1 col-md-9">
-	<div class="text-center"><h3>Woah there! You haven't shared any homework yet!</h3><h4>Why is sharing homework important?</h4>
-	<ol class="text-left">
-		<li>Earn upvotes which translate directly into credits allowing you to download more homework!</li>
-		<li>Fuel the community! Remember, sharing is caring!</li>
-		<li>Become a Trusted member so you can download unlimited homework for free! <a href="/faq#trusted">Learn more</a></li>
-	</ol> 
-	<a href="/share" class="btn btn-lg btn-primary">Share Homework</a>
-	</div><?php
-} else { ?><div class="col-md-9">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Rating</th>
+                <div class="col-lg-7 col-lg-push-1 col-md-9">
+                    <div class="text-center">
+                        <h3>Woah there! You haven't shared any homework yet!</h3>
 
-                                    <th>Downloads</th>
+                        <h4>Why is sharing homework important?</h4>
 
-                                    <th>Title</th>
-                                </tr>
-                            </thead>
+                        <ol class="text-left">
+                            <li>Earn upvotes which translate directly into credits allowing you to download more homework!</li>
 
-                            <tbody>
-                                <?php
+                            <li>Fuel the community! Remember, sharing is caring!</li>
 
-foreach ($profile['posts'] as $post) {
-	echo("<tr onclick='location.href=\"/hw/".$post['id']."\"'><td>".$post['rating']."</td>");
-	echo("<td>".$post['downloads']."</td>");
-	echo("<td>".htmlspecialchars($post['title'])."</td></tr>");
-}
-?>
-                            </tbody>
-                        </table>
-                    </div> <?php } ?>
+                            <li>Become a Trusted member so you can download unlimited homework for free! <a href="/faq#trusted">Learn more</a>
+                            </li>
+                        </ol><a href="/share" class="btn btn-lg btn-primary">Share Homework</a>
+                    </div><?php
+                    } else { ?>
+
+                    <div class="col-md-9">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Rating</th>
+
+                                        <th>Downloads</th>
+
+                                        <th>Title</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php
+
+                                    foreach ($profile['posts'] as $post) {
+                                        echo("<tr onclick='location.href=\"/hw/".$post['id']."\"'><td>".$post['rating']."</td>");
+                                        echo("<td>".$post['downloads']."</td>");
+                                        echo("<td>".htmlspecialchars($post['title'])."</td></tr>");
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div><?php } ?>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="push"></div>
-    </div><?php include("includes/footer.php"); ?>
+            <div id="push"></div>
+        </div><?php include("includes/footer.php"); ?>
+    </div>
 </body>
 </html>

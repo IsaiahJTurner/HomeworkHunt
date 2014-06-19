@@ -21,14 +21,12 @@ if (!isset($_GET['q'])) $_GET['q'] = "";
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript">
 </script>
-<script src="/js/jquery.dropdown.js" type="text/javascript" defer="defer">
+    <script src="/js/jquery.dropdown.js" type="text/javascript" defer="defer">
 </script>
-
     <script src="/js/script.js" type="text/javascript">
 </script>
     <script src="/js/modernizr.custom.js" type="text/javascript">
 </script>
-
     <script src="/js/bootstrap.js" type="text/javascript">
 </script><!-- Piwik -->
 
@@ -57,12 +55,13 @@ var _paq = _paq || [];
                     <div class="col-md-1 col-sm-2 col-xs-3">
                         <h3 style="padding: 10px initial;">Filter:</h3>
                     </div>
+
                     <div class="col-md-11 col-sm-10 col-xs-9">
                         <select id="filter-type" class="cd-select">
                             <option value="-1" selected>
                                 All
                             </option>
-                            
+
                             <option value="1">
                                 Worksheet
                             </option>
@@ -78,11 +77,11 @@ var _paq = _paq || [];
                             <option value="4">
                                 Project
                             </option>
-                            
+
                             <option value="5">
                                 Workbook
                             </option>
-                            
+
                             <option value="6" selected>
                                 Other
                             </option>
@@ -107,11 +106,7 @@ var _paq = _paq || [];
         </div>
 
         <div id="push"></div>
-    </div><?php include("includes/footer.php"); ?>
-    
-        <script type="text/javascript">
-    		
-
-    </script>
+    </div><?php include("includes/footer.php"); ?><script type="text/javascript">
+</script>
 </body>
 </html>

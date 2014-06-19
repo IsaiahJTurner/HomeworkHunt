@@ -29,7 +29,7 @@ var _paq = _paq || [];
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://localhost/analytics/";
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://homeworkhunt.com/analytics/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
     _paq.push(['setSiteId', 1]);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
@@ -44,8 +44,8 @@ p,h1,h2,h3,h4,h5,h6,address {
         text-align: left!important;
     }
     img {
-	    width: 100%;
-		-webkit-border-radius: 5px;
+        width: 100%;
+        -webkit-border-radius: 5px;
     }
     </style>
 </head>
@@ -53,7 +53,7 @@ p,h1,h2,h3,h4,h5,h6,address {
 <body>
     <div id="wrapper">
         <noscript>
-        <p><img src="http://localhost/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
+        <p><img src="http://homeworkhunt.com/analytics/piwik.php?idsite=1" style="border:0;" alt=""></p></noscript><!-- End Piwik Code -->
          <?php include("includes/header.php"); ?>
 
         <div class="container">
@@ -127,9 +127,7 @@ p,h1,h2,h3,h4,h5,h6,address {
 
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-xs-6">
-                                    <img src="/img/Luke-Jarboe.jpeg">
-                                </div>
+                                <div class="col-xs-6"><img src="/img/Luke-Jarboe.jpeg"></div>
 
                                 <div class="col-xs-6">
                                     <h4>Luke Jarboe</h4>
@@ -163,11 +161,13 @@ p,h1,h2,h3,h4,h5,h6,address {
 
                         <blockquote>
                             <p>Homework Hunt ins't so much a service for cheating as it is for verifying correctness. If students tried to use Homework Hunt to cheat, they wouldn't be able to succeed when tests and exams came around.</p>
+
                             <p class="footer"><cite title="Isaiah Turner">Isaiah Turner</cite>, Founder</p>
                         </blockquote>
-                        
+
                         <blockquote>
                             <p>Often I do homework, have it checked by my teacher, and never know if my answers were actually correct. It's great to finally feel like I'm learning from my homework and that it's more than just busy work.</p>
+
                             <p class="footer"><cite title="Isaiah Turner">Anonymous User</cite></p>
                         </blockquote>
                     </div>
