@@ -640,7 +640,7 @@ blockquote ul:last-child,
 blockquote ol:last-child {
   margin-bottom: 0;
 }
-blockquote footer,
+blockquote .footer,
 blockquote small,
 blockquote .small {
   display: block;
@@ -648,7 +648,7 @@ blockquote .small {
   line-height: 1.42857143;
   color: #999;
 }
-blockquote footer:before,
+blockquote .footer:before,
 blockquote small:before,
 blockquote .small:before {
   content: '\2014 \00A0';

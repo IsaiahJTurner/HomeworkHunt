@@ -20,14 +20,15 @@ function formatBytes($bytes, $precision = 2) {
 
 	return round($bytes, $precision) . ' ' . $units[$pow];
 }
+ header ('Content-type: text/html; charset=utf-8');
+
 ?>
 <!DOCTYPE html>
 
 <html lang="en">
 <head>
-    <meta charset="utf-8">
     <meta name="keywords" content="Homework Hunt, hw hunt, answers, homework, essays, papers, projects, hw">
-    <meta name="description" content="Find answers to any class assignment shared by users like you! Fuel the community, upload your answers today! It's free!">
+    <meta name="description" content="<?php echo(htmlentities($hw['description'])); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -78,7 +79,7 @@ var _paq = _paq || [];
         <div class="col-lg-8 col-lg-push-2 col-md-10 col-md-push-1">
             <h2><?php echo(htmlspecialchars($hw['title'])); ?></h2>
 <br>
-           <div class="hw-content"><?php echo(htmlspecialchars($hw['description'])); ?></div>
+           <p><?php echo(htmlspecialchars($hw['description'])); ?></p>
 <br>
             <div class="row">
                 <div class="col-sm-3 col-xs-6">
@@ -119,6 +120,9 @@ echo(formatBytes($hw['size'], 2));
             </div>
 
             <p class="text-center" style="margin-top:15px;">Comments feature coming soon.</p>
+            <ul id="comments">
+            	<li class="comment"><img src="https://d13yacurqjgara.cloudfront.net/users/31398/avatars/original/juliakhusainova-gravatar-copy.png?1333395342"></li>
+            </ul>
         </div>
     </div>
             <div id="push"></div>

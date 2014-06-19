@@ -129,12 +129,12 @@ var _paq = _paq || [];
                                 <form method="post" action="/api/share" enctype="multipart/form-data">
                                     <div class="panel-body">
                                         <div class="form-group">
-                                            <label for="title">Assignment Title</label> <input type="text" class="form-control" id="title" placeholder="Vocabulary Workshop Answer Key All Units: Level D" name="title">
+                                            <label for="title">Title</label> <input type="text" class="form-control" id="title" name="title">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="description">Description</label> 
-                                            <textarea type="text" class="form-control" id="description" placeholder="Most of these answers should be rite but I recommend checking them." name="description" rows="3">
+                                            <textarea type="text" class="form-control" id="description" name="description" rows="3">
 </textarea>
                                         </div>
 

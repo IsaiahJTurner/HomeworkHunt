@@ -106,7 +106,7 @@ font-size: 35px;"><?php ?></i>-->
 
         <div class="dark">
             <div class="container  text-center">
-                <h2>Share to download!</h2>
+                <h2>Join our community and exchange homework answers!</h2>
 
                 <div class="row">
                     <p class="col-xl-push-3 col-xl-6 col-lg-push-2 col-lg-8 col-md-push-1 col-md-10">We'll let you download one homework assignment for free. After that, you'll have to share homework to earn credits. Make sure it's correct because spam or incorrect homework can get you banned.</p>

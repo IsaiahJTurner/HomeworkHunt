@@ -2,7 +2,7 @@
         <div class="container text-center">
             <p >Made with <i class="fa fa-heart"><?php ?></i> by two high school students.</p>
 
-            <a href="/legal">Legal</a> - <a href="#">Press</a>
+            <a href="/legal">Legal</a> - <a href="/press">Press</a>
         </div>
 
         <div class="container text-center">

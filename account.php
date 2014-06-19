@@ -74,7 +74,19 @@ var _paq = _paq || [];
                     </div>
                 </div>
 
-                <div class="col-md-9">
+                
+                <?php if(count($profile['posts']) == 0) {
+	?>
+	<div class="col-lg-7 col-lg-push-1 col-md-9">
+	<div class="text-center"><h3>Woah there! You haven't shared any homework yet!</h3><h4>Why is sharing homework important?</h4>
+	<ol class="text-left">
+		<li>Earn upvotes which translate directly into credits allowing you to download more homework!</li>
+		<li>Fuel the community! Remember, sharing is caring!</li>
+		<li>Become a Trusted member so you can download unlimited homework for free! <a href="/faq#trusted">Learn more</a></li>
+	</ol> 
+	<a href="/share" class="btn btn-lg btn-primary">Share Homework</a>
+	</div><?php
+} else { ?><div class="col-md-9">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -95,11 +107,10 @@ foreach ($profile['posts'] as $post) {
 	echo("<td>".$post['downloads']."</td>");
 	echo("<td>".htmlspecialchars($post['title'])."</td></tr>");
 }
-
 ?>
                             </tbody>
                         </table>
-                    </div>
+                    </div> <?php } ?>
                 </div>
             </div>
         </div>
