@@ -48,7 +48,7 @@ if (!isset($_GET['p'])) {
 </sitemapindex><?php 
 // If this is the first page of the sitemap, send all the landing pages.
 } else if (intval($_GET['p']) == 0) { ?>
-<urlset xmlns="http://www.google.com/schemas/sitemap/0.90">
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.9">
 
 	<?php
 	$priority = 1; 
@@ -62,19 +62,18 @@ if (!isset($_GET['p'])) {
   } ?>
 </urlset>
 <?php } else if (intval($_GET['p']) >= $numSiteMaps){ ?>
-<urlset xmlns="http://www.google.com/schemas/sitemap/0.90">
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.9">
 <?php
 $posts = $whack->sitemapPage(intval($_GET['p']));
 foreach ($posts as $post => $modified) {
-	echo("<sitemap>");
+	echo("<url>");
     echo("<loc>");
     echo(SERVER_PROTOCOL."://".SERVER_HOSTNAME."/hw/".$post);
     echo("</loc>");
     echo("<lastmod>");
     echo(date('c', $modified)); 
     echo("</lastmod>");
-    echo("</sitemap>");
-	echo("Post");
+    echo("</url>");
 }
 ?>
 </urlset>
