@@ -77,7 +77,7 @@ class Whack {
 		$query = "INSERT INTO `users` (`username`, `email`, `password`) VALUES ('$username', '$email', '$password_hashed')";
 		$result = mysqli_query($mysqli, $query)  or die("Error " . mysqli_error($mysqli));
 		if (!$result) return false;
-		sendConfirmationEmail(mysqli_insert_id($mysqli));
+		$this->sendConfirmationEmail(mysqli_insert_id($mysqli));
 		return true;
 	}
 
@@ -254,7 +254,7 @@ class Whack {
 	}
 	function getProfile($user) {
 		$array = $this->getUser($user);
-
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
 		// Get the posts for the user
 		$query_2 = "SELECT a.id,a.title,COALESCE(SUM(CASE WHEN b.isUpvote THEN 1 ELSE -1 END),0) AS rating,COALESCE(SUM(c.`downloads`),0) AS downloads FROM submissions AS a LEFT JOIN votes AS b ON b.post = a.id LEFT JOIN purchases AS c ON c.item = a.id WHERE a.`user` = '$user' GROUP BY a.id";
 		$result_2 = mysqli_query($mysqli, $query_2) or die("Error " . mysqli_error($mysqli));
