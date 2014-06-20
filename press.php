@@ -43,7 +43,7 @@ p,h1,h2,h3,h4,h5,h6,address {
     .press p,.press h1,.press h2,.press h4,.press h5,.press h6 {
         text-align: left!important;
     }
-    img {
+    .profiles img {
         width: 100%;
         -webkit-border-radius: 5px;
     }
@@ -104,7 +104,7 @@ p,h1,h2,h3,h4,h5,h6,address {
                 </div>
 
                 <div class="col-sm-8">
-                    <div class="row">
+                    <div class="row profiles">
                         <h3>Our Team</h3>
 
                         <div class="col-md-6">
