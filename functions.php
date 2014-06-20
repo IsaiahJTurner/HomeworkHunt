@@ -16,8 +16,8 @@ class Whack {
 	function login($login, $password) {
 		$password_hashed = sha1($password);
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
-		$login = mysqli_escape_string($mysqli,$login);
-		$query = "SELECT `id` FROM `users` WHERE (`email` = '$login' OR `username` = '$login') AND `password` = '$password_hashed'";
+		$login_safe = mysqli_escape_string($mysqli,$login);
+		$query = "SELECT `id` FROM `users` WHERE (`email` = '$login_safe' OR `username` = '$login_safe') AND `password` = '$password_hashed'";
 		echo($query);
 		$result = mysqli_query($mysqli, $query) or die("Error " . mysqli_error($mysqli));
 		if (!$result) return false;
@@ -33,7 +33,41 @@ class Whack {
 
 		return $array[0]["id"];
 	}
-
+	function sendConfirmationEmail($user) {
+		$user = intval($user);
+		$user_info = $this->getUser($user);
+		if ($user_info['confirmed'] == 1) return;
+		
+		$sendgrid = new SendGrid(SENDGRID_USERNAME, SENDGRID_PASSWORD);
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
+		
+		$code = sha1($user.EMAIL_CONFIRMATION_KEY);
+		
+		// Substitute the strings
+		$html = file_get_contents(__DIR__."/email/template.html");
+		$html = str_replace("[resources_url]", SERVER_PROTOCOL."://".SERVER_HOSTNAME."/email", $html);
+		$html = str_replace("[page_url]", SERVER_PROTOCOL."://".SERVER_HOSTNAME, $html);
+		$html = str_replace("[chill_url]", CHILL_PROTOCOL."://".CHILL_SUBDOMAIN, $html);
+		$html = str_replace("[confirm_link]", SERVER_PROTOCOL."://".SERVER_HOSTNAME."/confirm?user=".$user."&code=".$code, $html);
+		
+		
+		$email = new SendGrid\Email();
+		$email->addTo($user_info['email'])->
+			setFrom('confirm@homeworkhunt.com')->
+			setSubject('Welcome to Homework Hunt!')->
+			setText('Welcome to Homework Hunt\nJust one more step.\nConfirm your account to start downloading from the fastest growing community of students exchanging homework.\n')->
+			setHtml($html)->
+			setFromName('Homework Hunt');
+		$sendgrid->send($email);
+		return;
+	}
+	function confirmUser($user,$code) {
+		if (sha1($user.EMAIL_CONFIRMATION_KEY) != $code) return false;
+		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
+		$user = intval($user);
+		$query = "UPDATE `users` SET `confirmed` = '1' WHERE `user` = '$user'";
+		mysqli_query($mysqli, $query);
+	}
 	// Creates a new user.
 	function register($username, $email, $password) {
 		$password_hashed = sha1($password);
@@ -43,6 +77,7 @@ class Whack {
 		$query = "INSERT INTO `users` (`username`, `email`, `password`) VALUES ('$username', '$email', '$password_hashed')";
 		$result = mysqli_query($mysqli, $query)  or die("Error " . mysqli_error($mysqli));
 		if (!$result) return false;
+		sendConfirmationEmail(mysqli_insert_id($mysqli));
 		return true;
 	}
 
@@ -196,7 +231,7 @@ class Whack {
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
 
 		$user = intval($user);
-		$result = mysqli_query($mysqli, "SELECT `trusted`,`username` FROM `users` WHERE `id` = '$user'")  or die("Error " . mysqli_error($mysqli));
+		$result = mysqli_query($mysqli, "SELECT `trusted`,`username`,`email`,`confirmed` FROM `users` WHERE `id` = '$user'")  or die("Error " . mysqli_error($mysqli));
 		$row = mysqli_fetch_assoc($result);
 		return $row;
 	}
@@ -218,12 +253,9 @@ class Whack {
 		return $results;
 	}
 	function getProfile($user) {
-		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
-		$query = "SELECT `id`,`username`,`email` FROM `users` WHERE `id` = '$user'";
-		$result = mysqli_query($mysqli, $query) or die("Error " . mysqli_error($mysqli));
-		$array = mysqli_fetch_assoc($result);
+		$array = $this->getUser($user);
 
-
+		// Get the posts for the user
 		$query_2 = "SELECT a.id,a.title,COALESCE(SUM(CASE WHEN b.isUpvote THEN 1 ELSE -1 END),0) AS rating,COALESCE(SUM(c.`downloads`),0) AS downloads FROM submissions AS a LEFT JOIN votes AS b ON b.post = a.id LEFT JOIN purchases AS c ON c.item = a.id WHERE a.`user` = '$user' GROUP BY a.id";
 		$result_2 = mysqli_query($mysqli, $query_2) or die("Error " . mysqli_error($mysqli));
 		$posts = array();
