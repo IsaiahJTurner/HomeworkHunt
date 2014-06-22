@@ -65,8 +65,9 @@ class Whack {
 		if (sha1($user.EMAIL_CONFIRMATION_KEY) != $code) return false;
 		$mysqli = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_NAME) or die("Error " . mysqli_error($mysqli));
 		$user = intval($user);
-		$query = "UPDATE `users` SET `confirmed` = '1' WHERE `user` = '$user'";
+		$query = "UPDATE `users` SET `confirmed` = '1' WHERE `id` = '$user'";
 		mysqli_query($mysqli, $query);
+		return true;
 	}
 	// Creates a new user.
 	function register($username, $email, $password) {
