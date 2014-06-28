@@ -172,7 +172,8 @@ $(document).ready(updateFullHeightSections);
 $(window).on('resize', updateFullHeightSections);
 
 function updateFullHeightSections() {
-	$('.fullHeight').css('min-height', $(window).height() + 'px');
+	var height = $(window).height() - 54;
+	$('.fullHeight').css('min-height', height + 'px');
 }
 
 function updateSearchResults() {
